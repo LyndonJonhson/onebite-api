@@ -1,6 +1,7 @@
 package com.example.onebite.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.example.onebite.entities.Restaurante;
 
@@ -9,27 +10,38 @@ public class RestauranteDTO implements Serializable {
 
 	private Long id;
 	
-	private String name;
+	private String nome;
 	
 	private String telefone;
 	
 	private String descricao;
+	
+	private Boolean aberto;
+	
+	private Boolean ativo;
+	
+	private Date dataCadastro;
 
 	public RestauranteDTO() {
 	}
 
-	public RestauranteDTO(Long id, String name, String telefone, String descricao) {
+	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo) {
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 		this.telefone = telefone;
 		this.descricao = descricao;
+		this.aberto = aberto;
+		this.ativo = ativo;
 	}
 	
 	public RestauranteDTO(Restaurante entity) {
 		this.id = entity.getId();
-		this.name = entity.getName();
+		this.nome = entity.getNome();
 		this.telefone = entity.getTelefone();
 		this.descricao = entity.getDescricao();
+		this.dataCadastro = entity.getDataCadastro();
+		this.aberto = entity.getAberto();
+		this.ativo = entity.getAtivo();
 	}
 
 	public Long getId() {
@@ -40,12 +52,12 @@ public class RestauranteDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getTelefone() {
@@ -62,6 +74,26 @@ public class RestauranteDTO implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}	
+	}
+	
+	public Boolean getAberto() {
+		return aberto;
+	}
+
+	public void setAberto(Boolean aberto) {
+		this.aberto = aberto;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
 	
 }

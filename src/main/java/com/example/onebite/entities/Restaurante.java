@@ -1,12 +1,16 @@
 package com.example.onebite.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Restaurante implements Serializable {
@@ -16,20 +20,30 @@ public class Restaurante implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String name;
+	private String nome;
 	
 	private String telefone;
 	
 	private String descricao;
 	
+	private Boolean aberto;
+	
+	private Boolean ativo;
+	
+	@CreationTimestamp
+	@Column(columnDefinition = "datetime")
+	private Date dataCadastro;
+	
 	public Restaurante() {
 	}
 
-	public Restaurante(Long id, String name, String telefone, String descricao) {
+	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo) {
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 		this.telefone = telefone;
 		this.descricao = descricao;
+		this.aberto = aberto;
+		this.ativo = ativo;
 	}
 
 	public Long getId() {
@@ -40,12 +54,12 @@ public class Restaurante implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getTelefone() {
@@ -62,6 +76,26 @@ public class Restaurante implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Boolean getAberto() {
+		return aberto;
+	}
+
+	public void setAberto(Boolean aberto) {
+		this.aberto = aberto;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
 
 	@Override

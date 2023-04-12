@@ -61,12 +61,16 @@ public class RestauranteService {
 	}
 	
 	private void copyDtoToEntity(RestauranteDTO dto, Restaurante entity) {
-		if (dto.getName() != null)			
-			entity.setName(dto.getName());
+		if (dto.getNome() != null)			
+			entity.setNome(dto.getNome());
 		if (dto.getTelefone() != null)		
 			entity.setTelefone(dto.getTelefone());
 		if (dto.getDescricao() != null)		
 			entity.setDescricao(dto.getDescricao());
+		if (dto.getAberto() != null)
+			entity.setAberto(dto.getAberto());
+		if (dto.getAtivo() != null)
+			entity.setAtivo(dto.getAtivo());
 	}
 	
 }
