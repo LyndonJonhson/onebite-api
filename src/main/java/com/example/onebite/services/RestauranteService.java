@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,9 @@ public class RestauranteService {
 		catch (EntityNotFoundException e) {
 			throw e;
 		}
+		catch (DataIntegrityViolationException e) {
+			throw e;
+		}
 	}
 	
 	public void delete(Long id) {
@@ -71,6 +75,8 @@ public class RestauranteService {
 			entity.setAberto(dto.getAberto());
 		if (dto.getAtivo() != null)
 			entity.setAtivo(dto.getAtivo());
+		if (dto.getEndereco() != null)
+			entity.setEndereco(dto.getEndereco());
 	}
 	
 }

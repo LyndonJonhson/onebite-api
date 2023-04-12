@@ -3,6 +3,7 @@ package com.example.onebite.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.example.onebite.entities.Endereco;
 import com.example.onebite.entities.Restaurante;
 
 public class RestauranteDTO implements Serializable {
@@ -21,17 +22,20 @@ public class RestauranteDTO implements Serializable {
 	private Boolean ativo;
 	
 	private Date dataCadastro;
+	
+	private Endereco endereco;
 
 	public RestauranteDTO() {
 	}
 
-	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo) {
+	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.descricao = descricao;
 		this.aberto = aberto;
 		this.ativo = ativo;
+		this.endereco = endereco;
 	}
 	
 	public RestauranteDTO(Restaurante entity) {
@@ -42,6 +46,7 @@ public class RestauranteDTO implements Serializable {
 		this.dataCadastro = entity.getDataCadastro();
 		this.aberto = entity.getAberto();
 		this.ativo = entity.getAtivo();
+		this.endereco = entity.getEndereco();
 	}
 
 	public Long getId() {
@@ -94,6 +99,14 @@ public class RestauranteDTO implements Serializable {
 
 	public Date getDataCadastro() {
 		return dataCadastro;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 }

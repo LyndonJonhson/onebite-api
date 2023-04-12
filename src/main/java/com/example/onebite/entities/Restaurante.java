@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,30 +21,39 @@ public class Restaurante implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
 	
+	@Column(nullable = false)
 	private String telefone;
 	
+	@Column(nullable = false)
 	private String descricao;
 	
+	@Column(nullable = false)
 	private Boolean aberto;
 	
+	@Column(nullable = false)
 	private Boolean ativo;
 	
 	@CreationTimestamp
-	@Column(columnDefinition = "datetime")
+	@Column(nullable = false, columnDefinition = "datetime")
 	private Date dataCadastro;
+	
+	@Embedded
+	private Endereco endereco;
 	
 	public Restaurante() {
 	}
 
-	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo) {
+	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.descricao = descricao;
 		this.aberto = aberto;
 		this.ativo = ativo;
+		this.endereco = endereco;
 	}
 
 	public Long getId() {
@@ -96,6 +106,14 @@ public class Restaurante implements Serializable {
 
 	public Date getDataCadastro() {
 		return dataCadastro;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
