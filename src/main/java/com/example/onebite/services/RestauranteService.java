@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.onebite.dto.RestauranteDTO;
@@ -46,7 +47,16 @@ public class RestauranteService {
 			return new RestauranteDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw new EntityNotFoundException();
+			throw e;
+		}
+	}
+	
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		}
+		catch (EmptyResultDataAccessException e) {
+			throw e;
 		}
 	}
 	
