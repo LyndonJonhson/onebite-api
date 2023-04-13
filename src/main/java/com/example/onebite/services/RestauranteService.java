@@ -23,7 +23,7 @@ public class RestauranteService {
 	
 	public List<RestauranteDTO> findAll() {
 		List<Restaurante> list = repository.findAll();
-		return list.stream().map(restaurante -> new RestauranteDTO(restaurante)).toList();
+		return list.stream().map(entity -> new RestauranteDTO(entity)).toList();
 	}
 	
 	public RestauranteDTO findById(Long id) {
