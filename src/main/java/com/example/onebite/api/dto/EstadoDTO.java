@@ -2,15 +2,21 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import com.example.onebite.domain.entity.Estado;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.example.onebite.domain.model.Estado;
 
 public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@NotNull(groups = Groups.InsertCidade.class)
 	private Long id;
-
+	
+	@NotBlank(groups = Groups.InsertEstado.class)
 	private String nome;
 
+	@NotBlank(groups = Groups.InsertEstado.class)
 	private String sigla;
 	
 	public EstadoDTO() {

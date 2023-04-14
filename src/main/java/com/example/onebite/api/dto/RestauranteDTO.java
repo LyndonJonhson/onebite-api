@@ -7,39 +7,38 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.example.onebite.domain.entity.Endereco;
-import com.example.onebite.domain.entity.Restaurante;
+import com.example.onebite.domain.model.Restaurante;
 
 public class RestauranteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@NotNull
 	private Long id;
 	
-	@NotBlank(message = "campo requerido")
+	@NotBlank(groups = Groups.InsertRestaurante.class)
 	private String nome;
 	
-	@NotBlank(message = "campo requerido")
+	@NotBlank(groups = Groups.InsertRestaurante.class)
 	private String telefone;
 	
-	@NotBlank(message = "campo requerido")
 	private String descricao;
 	
-	@NotNull(message = "campo requerido")
+	@NotNull(groups = Groups.InsertRestaurante.class)
 	private Boolean aberto;
 	
-	@NotNull(message = "campo requerido")
+	@NotNull(groups = Groups.InsertRestaurante.class)
 	private Boolean ativo;
 	
 	private Date dataCadastro;
 	
 	@Valid
-	@NotNull(message = "campo requerido")
-	private Endereco endereco;
+	@NotNull(groups = Groups.InsertRestaurante.class)
+	private EnderecoDTO endereco;
 
 	public RestauranteDTO() {
 	}
 
-	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, Endereco endereco) {
+	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, EnderecoDTO endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -57,7 +56,7 @@ public class RestauranteDTO implements Serializable {
 		this.dataCadastro = entity.getDataCadastro();
 		this.aberto = entity.getAberto();
 		this.ativo = entity.getAtivo();
-		this.endereco = entity.getEndereco();
+		this.endereco = new EnderecoDTO(entity.getEndereco());
 	}
 
 	public Long getId() {
@@ -112,11 +111,11 @@ public class RestauranteDTO implements Serializable {
 		return dataCadastro;
 	}
 
-	public Endereco getEndereco() {
+	public EnderecoDTO getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(EnderecoDTO endereco) {
 		this.endereco = endereco;
 	}
 	

@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.onebite.api.dto.RestauranteDTO;
-import com.example.onebite.domain.entity.Restaurante;
+import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
-import com.example.onebite.domain.exception.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
+import com.example.onebite.domain.model.Endereco;
+import com.example.onebite.domain.model.Restaurante;
+import com.example.onebite.domain.repository.BairroRepository;
 import com.example.onebite.domain.repository.RestauranteRepository;
 
 @Service
@@ -23,6 +25,9 @@ public class RestauranteService {
 	
 	@Autowired
 	private RestauranteRepository repository;
+	
+	@Autowired
+	private BairroRepository bairroRepository;
 	
 	@Transactional(readOnly = true)
 	public List<RestauranteDTO> findAll() {
@@ -83,6 +88,8 @@ public class RestauranteService {
 		if (dto.getAtivo() != null)
 			entity.setAtivo(dto.getAtivo());
 		if (dto.getEndereco() != null) {
+			if (entity.getEndereco() == null)
+				entity.setEndereco(new Endereco());			
 			if (dto.getEndereco().getCep() != null)
 				entity.getEndereco().setCep(dto.getEndereco().getCep());
 			if (dto.getEndereco().getLogradouro() != null)
@@ -92,7 +99,7 @@ public class RestauranteService {
 			if (dto.getEndereco().getComplemento() != null)
 				entity.getEndereco().setComplemento(dto.getEndereco().getComplemento());
 			if (dto.getEndereco().getBairro() != null)
-				entity.getEndereco().setBairro(dto.getEndereco().getBairro());
+				entity.getEndereco().setBairro(bairroRepository.getReferenceById(dto.getEndereco().getBairro().getId()));
 		}
 	}
 	

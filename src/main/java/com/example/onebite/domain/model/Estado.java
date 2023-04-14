@@ -1,4 +1,4 @@
-package com.example.onebite.domain.entity;
+package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Objects;

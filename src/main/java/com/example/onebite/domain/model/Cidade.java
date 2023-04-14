@@ -1,4 +1,4 @@
-package com.example.onebite.domain.entity;
+package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Bairro implements Serializable {
+public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,16 +23,16 @@ public class Bairro implements Serializable {
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "cidade_id", nullable = false)
-	private Cidade cidade;
+	@JoinColumn(name = "estado_id", nullable = false)
+	private Estado estado;
 
-	public Bairro() {
+	public Cidade() {
 	}
 
-	public Bairro(Long id, String nome, Cidade cidade) {
+	public Cidade(Long id, String nome, Estado estado) {
 		this.id = id;
 		this.nome = nome;
-		this.cidade = cidade;
+		this.estado = estado;
 	}
 
 	public Long getId() {
@@ -51,12 +51,12 @@ public class Bairro implements Serializable {
 		this.nome = nome;
 	}
 
-	public Cidade getCidade() {
-		return cidade;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override
@@ -72,8 +72,15 @@ public class Bairro implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bairro other = (Bairro) obj;
+		Cidade other = (Cidade) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "Cidade [id=" + id + ", nome=" + nome + ", estado=" + estado + "]";
+	}
+	
+	
 	
 }

@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.onebite.api.dto.Groups;
 import com.example.onebite.api.dto.RestauranteDTO;
 import com.example.onebite.domain.service.RestauranteService;
 
@@ -40,13 +42,13 @@ public class RestauranteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public RestauranteDTO insert(@Valid @RequestBody RestauranteDTO dto) {
+	public RestauranteDTO insert(@Validated(Groups.InsertRestaurante.class) @RequestBody RestauranteDTO dto) {
 		return service.insert(dto);
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public RestauranteDTO update(@PathVariable Long id, @RequestBody RestauranteDTO dto) {
+	public RestauranteDTO update(@PathVariable Long id, @Valid @RequestBody RestauranteDTO dto) {
 		return service.update(id, dto);
 	}
 	

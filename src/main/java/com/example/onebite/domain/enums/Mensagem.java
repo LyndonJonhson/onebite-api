@@ -1,4 +1,4 @@
-package com.example.onebite.domain.exception;
+package com.example.onebite.domain.enums;
 
 public enum Mensagem {
 	

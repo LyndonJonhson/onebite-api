@@ -11,18 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.onebite.api.dto.CidadeDTO;
-import com.example.onebite.domain.entity.Cidade;
+import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
-import com.example.onebite.domain.exception.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
+import com.example.onebite.domain.model.Cidade;
 import com.example.onebite.domain.repository.CidadeRepository;
+import com.example.onebite.domain.repository.EstadoRepository;
 
 @Service
 public class CidadeService {
 	
 	@Autowired
 	private CidadeRepository repository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
 	
 	@Transactional(readOnly = true)
 	public List<CidadeDTO> findAll() {
@@ -75,7 +79,7 @@ public class CidadeService {
 		if (dto.getNome() != null)
 			entity.setNome(dto.getNome());
 		if (dto.getEstado() != null)
-			entity.setEstado(dto.getEstado());
+			entity.setEstado(estadoRepository.getReferenceById(dto.getEstado().getId()));
 	}
 	
 }

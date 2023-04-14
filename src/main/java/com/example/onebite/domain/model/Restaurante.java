@@ -1,4 +1,4 @@
-package com.example.onebite.domain.entity;
+package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -27,7 +27,6 @@ public class Restaurante implements Serializable {
 	@Column(nullable = false)
 	private String telefone;
 	
-	@Column(nullable = false)
 	private String descricao;
 	
 	@Column(nullable = false)

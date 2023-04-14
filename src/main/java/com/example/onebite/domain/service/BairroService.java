@@ -11,18 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.onebite.api.dto.BairroDTO;
-import com.example.onebite.domain.entity.Bairro;
+import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
-import com.example.onebite.domain.exception.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
+import com.example.onebite.domain.model.Bairro;
 import com.example.onebite.domain.repository.BairroRepository;
+import com.example.onebite.domain.repository.CidadeRepository;
 
 @Service
 public class BairroService {
 	
 	@Autowired
 	private BairroRepository repository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 	@Transactional(readOnly = true)
 	public List<BairroDTO> findAll() {
@@ -76,7 +80,7 @@ public class BairroService {
 		if (dto.getNome() != null)
 			entity.setNome(dto.getNome());
 		if (dto.getCidade() != null)
-			entity.setCidade(dto.getCidade());
+			entity.setCidade(cidadeRepository.getReferenceById(dto.getCidade().getId()));			
 	}
 	
 }
