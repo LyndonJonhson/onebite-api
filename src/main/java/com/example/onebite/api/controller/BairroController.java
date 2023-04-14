@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.onebite.domain.dto.BairroDTO;
+import com.example.onebite.api.dto.BairroDTO;
 import com.example.onebite.domain.service.BairroService;
 
 @RestController

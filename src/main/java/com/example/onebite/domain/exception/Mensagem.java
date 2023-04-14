@@ -6,7 +6,9 @@ public enum Mensagem {
 	
 	ENTIDADE_EM_USO("Entidade com id %d não pode ser removida, pois está em uso"),
 	
-	MENSAGEM_NAO_COMPREENSIVEL("Corpo da requisição com algum campo ou dado errado");
+	MENSAGEM_NAO_COMPREENSIVEL("Corpo da requisição com algum campo ou dado errado"),
+	
+	ERRO_DE_VALIDACAO("Ocorreu um erro de validação, verifique se os campos estão corretos");
 	
 	private String mensagem;
 	

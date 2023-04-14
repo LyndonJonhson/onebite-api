@@ -1,52 +1,45 @@
-package com.example.onebite.domain.model;
+package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.CreationTimestamp;
+import com.example.onebite.domain.entity.Endereco;
+import com.example.onebite.domain.entity.Restaurante;
 
-@Entity
-public class Restaurante implements Serializable {
+public class RestauranteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	
-	@Column(nullable = false)
+	@NotBlank(message = "campo requerido")
 	private String nome;
 	
-	@Column(nullable = false)
+	@NotBlank(message = "campo requerido")
 	private String telefone;
 	
-	@Column(nullable = false)
+	@NotBlank(message = "campo requerido")
 	private String descricao;
 	
-	@Column(nullable = false)
+	@NotNull(message = "campo requerido")
 	private Boolean aberto;
 	
-	@Column(nullable = false)
+	@NotNull(message = "campo requerido")
 	private Boolean ativo;
 	
-	@CreationTimestamp
-	@Column(nullable = false, columnDefinition = "datetime")
 	private Date dataCadastro;
 	
-	@Embedded
+	@Valid
+	@NotNull(message = "campo requerido")
 	private Endereco endereco;
-	
-	public Restaurante() {
+
+	public RestauranteDTO() {
 	}
 
-	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, Endereco endereco) {
+	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -54,6 +47,17 @@ public class Restaurante implements Serializable {
 		this.aberto = aberto;
 		this.ativo = ativo;
 		this.endereco = endereco;
+	}
+	
+	public RestauranteDTO(Restaurante entity) {
+		this.id = entity.getId();
+		this.nome = entity.getNome();
+		this.telefone = entity.getTelefone();
+		this.descricao = entity.getDescricao();
+		this.dataCadastro = entity.getDataCadastro();
+		this.aberto = entity.getAberto();
+		this.ativo = entity.getAtivo();
+		this.endereco = entity.getEndereco();
 	}
 
 	public Long getId() {
@@ -87,7 +91,7 @@ public class Restaurante implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
+	
 	public Boolean getAberto() {
 		return aberto;
 	}
@@ -115,22 +119,5 @@ public class Restaurante implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Restaurante other = (Restaurante) obj;
-		return Objects.equals(id, other.id);
-	}	
 	
 }

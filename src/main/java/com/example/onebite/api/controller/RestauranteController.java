@@ -2,6 +2,8 @@ package com.example.onebite.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.onebite.domain.dto.RestauranteDTO;
+import com.example.onebite.api.dto.RestauranteDTO;
 import com.example.onebite.domain.service.RestauranteService;
 
 @RestController
@@ -38,7 +40,7 @@ public class RestauranteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public RestauranteDTO insert(@RequestBody RestauranteDTO dto) {
+	public RestauranteDTO insert(@Valid @RequestBody RestauranteDTO dto) {
 		return service.insert(dto);
 	}
 	

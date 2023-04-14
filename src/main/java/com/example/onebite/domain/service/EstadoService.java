@@ -10,12 +10,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.onebite.domain.dto.EstadoDTO;
+import com.example.onebite.api.dto.EstadoDTO;
+import com.example.onebite.domain.entity.Estado;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
 import com.example.onebite.domain.exception.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
-import com.example.onebite.domain.model.Estado;
 import com.example.onebite.domain.repository.EstadoRepository;
 
 @Service

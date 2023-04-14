@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
+import com.example.onebite.domain.exception.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 
 @ControllerAdvice
@@ -63,7 +64,7 @@ public class ApiExceptionHandler {
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
 		err.setError("Mensagem não legível");
-		err.setMessage("Corpo da requisição com algum campo ou dado errado");
+		err.setMessage(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
@@ -87,7 +88,7 @@ public class ApiExceptionHandler {
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
 		err.setError("Erro de validação");
-		err.setMessage(e.getMessage());
+		err.setMessage(Mensagem.ERRO_DE_VALIDACAO.getMensagem());
 		err.setPath(request.getRequestURI());
 		
 		for (FieldError f : e.getBindingResult().getFieldErrors()) {

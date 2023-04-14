@@ -1,4 +1,4 @@
-package com.example.onebite.domain.model;
+package com.example.onebite.domain.entity;
 
 import java.io.Serializable;
 
@@ -6,22 +6,28 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@NotBlank
 	@Column(nullable = false)
 	private String cep;
 	
+	@NotBlank
 	@Column(nullable = false)
 	private String logradouro;
 	
+	@NotBlank
 	@Column(nullable = false)
 	private String numero;
 	
 	private String complemento;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "bairro_id", nullable = false)
 	private Bairro bairro;

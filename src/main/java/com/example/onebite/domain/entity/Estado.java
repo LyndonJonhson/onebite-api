@@ -1,4 +1,4 @@
-package com.example.onebite.domain.model;
+package com.example.onebite.domain.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,13 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Cidade implements Serializable {
+public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,17 +20,16 @@ public class Cidade implements Serializable {
 	@Column(nullable = false)
 	private String nome;
 	
-	@ManyToOne
-	@JoinColumn(name = "estado_id", nullable = false)
-	private Estado estado;
-
-	public Cidade() {
+	@Column(nullable = false)
+	private String sigla;
+	
+	public Estado() {
 	}
 
-	public Cidade(Long id, String nome, Estado estado) {
+	public Estado(Long id, String nome, String sigla) {
 		this.id = id;
 		this.nome = nome;
-		this.estado = estado;
+		this.sigla = sigla;
 	}
 
 	public Long getId() {
@@ -51,12 +48,12 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
 	@Override
@@ -72,7 +69,7 @@ public class Cidade implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
 	
