@@ -1,4 +1,4 @@
-package com.example.onebite.entities;
+package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 
@@ -22,23 +22,19 @@ public class Endereco implements Serializable {
 	
 	private String complemento;
 	
-	@Column(nullable = false)
-	private String bairro;
-	
 	@ManyToOne
-	@JoinColumn(name = "cidade_id", nullable = false)
-	private Cidade cidade;
+	@JoinColumn(name = "bairro_id", nullable = false)
+	private Bairro bairro;
 
 	public Endereco() {
 	}
 
-	public Endereco(String cep, String logradouro, String numero, String complemento, String bairro, Cidade cidade) {
+	public Endereco(String cep, String logradouro, String numero, String complemento, Bairro bairro) {
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.bairro = bairro;
-		this.cidade = cidade;
 	}
 
 	public String getCep() {
@@ -73,20 +69,12 @@ public class Endereco implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public String getBairro() {
+	public Bairro getBairro() {
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
+	public void setBairro(Bairro bairro) {
 		this.bairro = bairro;
-	}
-
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.example.onebite.services;
+package com.example.onebite.domain.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +11,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.example.onebite.dto.RestauranteDTO;
-import com.example.onebite.entities.Restaurante;
-import com.example.onebite.repositories.RestauranteRepository;
+import com.example.onebite.domain.dto.RestauranteDTO;
+import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
+import com.example.onebite.domain.model.Restaurante;
+import com.example.onebite.domain.repository.RestauranteRepository;
 
 @Service
 public class RestauranteService {
@@ -48,7 +49,7 @@ public class RestauranteService {
 			return new RestauranteDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw e;
+			throw new EntidadeNaoEncontradaException("Entidade não encontrada");
 		}
 		catch (DataIntegrityViolationException e) {
 			throw e;

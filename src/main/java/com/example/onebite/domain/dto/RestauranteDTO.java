@@ -1,10 +1,10 @@
-package com.example.onebite.dto;
+package com.example.onebite.domain.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import com.example.onebite.entities.Endereco;
-import com.example.onebite.entities.Restaurante;
+import com.example.onebite.domain.model.Endereco;
+import com.example.onebite.domain.model.Restaurante;
 
 public class RestauranteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

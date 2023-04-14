@@ -1,4 +1,4 @@
-package com.example.onebite.controllers;
+package com.example.onebite.api.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -15,38 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.onebite.dto.CidadeDTO;
-import com.example.onebite.services.CidadeService;
+import com.example.onebite.domain.dto.EstadoDTO;
+import com.example.onebite.domain.service.EstadoService;
 
 @RestController
-@RequestMapping("/cidades")
-public class CidadeController {
+@RequestMapping("/estados")
+public class EstadoController {
 	
 	@Autowired
-	private CidadeService service;
+	private EstadoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<CidadeDTO>> findAll() {
-		List<CidadeDTO> list = service.findAll();		
+	public ResponseEntity<List<EstadoDTO>> findAll() {
+		List<EstadoDTO> list = service.findAll();		
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<CidadeDTO> findById(@PathVariable Long id) {
-		CidadeDTO dto = service.findById(id);
+	public ResponseEntity<EstadoDTO> findById(@PathVariable Long id) {
+		EstadoDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<CidadeDTO> insert(@RequestBody CidadeDTO dto) {
+	public ResponseEntity<EstadoDTO> insert(@RequestBody EstadoDTO dto) {
 		dto = service.insert(dto);
-		System.out.println(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(dto.getId(), dto.getNome(), dto.getEstado()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<CidadeDTO> update(@PathVariable Long id, @RequestBody CidadeDTO dto) {
+	public ResponseEntity<EstadoDTO> update(@PathVariable Long id, @RequestBody EstadoDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

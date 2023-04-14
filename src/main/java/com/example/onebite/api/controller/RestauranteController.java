@@ -1,4 +1,4 @@
-package com.example.onebite.controllers;
+package com.example.onebite.api.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -15,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.onebite.dto.EstadoDTO;
-import com.example.onebite.services.EstadoService;
+import com.example.onebite.domain.dto.RestauranteDTO;
+import com.example.onebite.domain.service.RestauranteService;
 
 @RestController
-@RequestMapping("/estados")
-public class EstadoController {
+@RequestMapping("/restaurantes")
+public class RestauranteController {
 	
 	@Autowired
-	private EstadoService service;
+	private RestauranteService service;
 	
 	@GetMapping
-	public ResponseEntity<List<EstadoDTO>> findAll() {
-		List<EstadoDTO> list = service.findAll();		
+	public ResponseEntity<List<RestauranteDTO>> findAll() {
+		List<RestauranteDTO> list = service.findAll();		
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<EstadoDTO> findById(@PathVariable Long id) {
-		EstadoDTO dto = service.findById(id);
+	public ResponseEntity<RestauranteDTO> findById(@PathVariable Long id) {
+		RestauranteDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<EstadoDTO> insert(@RequestBody EstadoDTO dto) {
+	public ResponseEntity<RestauranteDTO> insert(@RequestBody RestauranteDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<EstadoDTO> update(@PathVariable Long id, @RequestBody EstadoDTO dto) {
+	public ResponseEntity<RestauranteDTO> update(@PathVariable Long id, @RequestBody RestauranteDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

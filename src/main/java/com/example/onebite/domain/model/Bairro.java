@@ -1,4 +1,4 @@
-package com.example.onebite.entities;
+package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Cidade implements Serializable {
+public class Bairro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,16 +23,16 @@ public class Cidade implements Serializable {
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "estado_id", nullable = false)
-	private Estado estado;
+	@JoinColumn(name = "cidade_id", nullable = false)
+	private Cidade cidade;
 
-	public Cidade() {
+	public Bairro() {
 	}
 
-	public Cidade(Long id, String nome, Estado estado) {
+	public Bairro(Long id, String nome, Cidade cidade) {
 		this.id = id;
 		this.nome = nome;
-		this.estado = estado;
+		this.cidade = cidade;
 	}
 
 	public Long getId() {
@@ -51,12 +51,12 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public Cidade getCidade() {
+		return cidade;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class Cidade implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Bairro other = (Bairro) obj;
 		return Objects.equals(id, other.id);
 	}
 	

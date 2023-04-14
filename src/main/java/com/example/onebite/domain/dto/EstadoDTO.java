@@ -1,8 +1,8 @@
-package com.example.onebite.dto;
+package com.example.onebite.domain.dto;
 
 import java.io.Serializable;
 
-import com.example.onebite.entities.Estado;
+import com.example.onebite.domain.model.Estado;
 
 public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
