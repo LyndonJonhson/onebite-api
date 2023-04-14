@@ -3,16 +3,18 @@ package com.example.onebite.domain.service;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.onebite.domain.dto.BairroDTO;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
+import com.example.onebite.domain.exception.Mensagem;
+import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 import com.example.onebite.domain.model.Bairro;
 import com.example.onebite.domain.repository.BairroRepository;
 
@@ -22,26 +24,30 @@ public class BairroService {
 	@Autowired
 	private BairroRepository repository;
 	
-	private static final String MSG_BAIRRO_NAO_ENCONTRADO = "Não existe um Bairro cadastrado com esse id: %d";
-	
-	private static final String MSG_BAIRRO_EM_USO = "Entidade com id %d não pode ser removida, pois está em uso";
-	
+	@Transactional(readOnly = true)
 	public List<BairroDTO> findAll() {
 		List<Bairro> list = repository.findAll();
 		return list.stream().map(entity -> new BairroDTO(entity)).toList();
 	}
 	
+	@Transactional(readOnly = true)
 	public BairroDTO findById(Long id) {		
 		Bairro entity = repository.findById(id)
-				.orElseThrow(() -> new EntidadeNaoEncontradaException(String.format(MSG_BAIRRO_NAO_ENCONTRADO, id)));
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), id)));
 		return new BairroDTO(entity);
 	}
 	
+	@Transactional
 	public BairroDTO insert(BairroDTO dto) {
-		Bairro entity = new Bairro();
-		copyDtoToEntity(dto, entity);
-		entity = repository.save(entity);
-		return new BairroDTO(entity);
+		try {
+			Bairro entity = new Bairro();
+			copyDtoToEntity(dto, entity);
+			entity = repository.save(entity);
+			return new BairroDTO(entity);
+		} catch (DataIntegrityViolationException e) {
+			throw new MensagemNaoCompreensivelException(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem());
+		}
+		
 	}
 	
 	@Transactional
@@ -52,7 +58,7 @@ public class BairroService {
 			entity = repository.save(entity);
 			return new BairroDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new EntidadeNaoEncontradaException(String.format(MSG_BAIRRO_NAO_ENCONTRADO, id));
+			throw new EntidadeNaoEncontradaException(String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), id));
 		}
 	}	
 	
@@ -60,9 +66,9 @@ public class BairroService {
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(String.format(MSG_BAIRRO_NAO_ENCONTRADO, id));
+			throw new EntidadeNaoEncontradaException(String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), id));
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_BAIRRO_EM_USO, id));
+			throw new EntidadeEmUsoException(String.format(Mensagem.ENTIDADE_EM_USO.getMensagem(), id));
 		}
 	}
 
