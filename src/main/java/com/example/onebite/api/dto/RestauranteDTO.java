@@ -7,32 +7,33 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.example.onebite.core.validation.Groups;
 import com.example.onebite.domain.model.Restaurante;
 
 public class RestauranteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull
+	@NotNull(groups = Groups.restaurante_id.class)
 	private Long id;
 	
-	@NotBlank(groups = Groups.InsertRestaurante.class)
+	@NotBlank
 	private String nome;
 	
-	@NotBlank(groups = Groups.InsertRestaurante.class)
+	@NotBlank
 	private String telefone;
 	
 	private String descricao;
 	
-	@NotNull(groups = Groups.InsertRestaurante.class)
+	@NotNull
 	private Boolean aberto;
 	
-	@NotNull(groups = Groups.InsertRestaurante.class)
+	@NotNull
 	private Boolean ativo;
 	
 	private Date dataCadastro;
 	
 	@Valid
-	@NotNull(groups = Groups.InsertRestaurante.class)
+	@NotNull
 	private EnderecoDTO endereco;
 
 	public RestauranteDTO() {

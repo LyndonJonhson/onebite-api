@@ -4,6 +4,9 @@ import java.time.Instant;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -20,6 +23,9 @@ import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	@ExceptionHandler(EntidadeNaoEncontradaException.class)
 	public ResponseEntity<StandardError> entidadeNaoEncontradaExceptionHandler(EntidadeNaoEncontradaException e, HttpServletRequest request) {
@@ -91,8 +97,9 @@ public class ApiExceptionHandler {
 		err.setMessage(Mensagem.ERRO_DE_VALIDACAO.getMensagem());
 		err.setPath(request.getRequestURI());
 		
-		for (FieldError f : e.getBindingResult().getFieldErrors()) {
-			err.addError(f.getField(), f.getDefaultMessage());
+		for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
+			String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+			err.addError(fieldError.getField(), message);
 		}
 		
 		return ResponseEntity.status(status).body(err);

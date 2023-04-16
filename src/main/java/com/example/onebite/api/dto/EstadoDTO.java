@@ -5,18 +5,21 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.example.onebite.core.validation.EstadoValid;
+import com.example.onebite.core.validation.Groups;
 import com.example.onebite.domain.model.Estado;
 
+@EstadoValid
 public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull(groups = Groups.InsertCidade.class)
+	@NotNull(groups = Groups.estado_id.class)
 	private Long id;
 	
-	@NotBlank(groups = Groups.InsertEstado.class)
+	@NotBlank
 	private String nome;
 
-	@NotBlank(groups = Groups.InsertEstado.class)
+	@NotBlank
 	private String sigla;
 	
 	public EstadoDTO() {

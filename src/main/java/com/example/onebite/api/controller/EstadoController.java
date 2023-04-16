@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.dto.EstadoDTO;
-import com.example.onebite.api.dto.Groups;
 import com.example.onebite.domain.service.EstadoService;
 
 @RestController
@@ -42,7 +40,7 @@ public class EstadoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public EstadoDTO insert(@Validated(Groups.InsertEstado.class) @RequestBody EstadoDTO dto) {
+	public EstadoDTO insert(@Valid @RequestBody EstadoDTO dto) {
 		return service.insert(dto);
 	}
 	

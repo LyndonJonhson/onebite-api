@@ -5,25 +5,28 @@ import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
 
+import com.example.onebite.core.validation.Groups;
 import com.example.onebite.domain.model.Endereco;
 
 public class EnderecoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@NotBlank(groups = Groups.InsertRestaurante.class)
+	@NotBlank
 	private String cep;
 	
-	@NotBlank(groups = Groups.InsertRestaurante.class)
+	@NotBlank
 	private String logradouro;
 	
-	@NotBlank(groups = Groups.InsertRestaurante.class)
+	@NotBlank
 	private String numero;
 	
 	private String complemento;
 	
 	@Valid	
-	@NotNull(groups = Groups.InsertRestaurante.class)
+	@NotNull
+	@ConvertGroup(to = Groups.bairro_id.class)
 	private BairroDTO bairro;
 
 	public EnderecoDTO() {
