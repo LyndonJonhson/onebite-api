@@ -2,26 +2,15 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-
-import com.example.onebite.core.validation.Groups;
 import com.example.onebite.domain.model.Cidade;
 
 public class CidadeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull(groups = Groups.cidade_id.class)
 	private Long id;
-	
-	@NotBlank
+
 	private String nome;
-	
-	@Valid
-	@NotNull
-	@ConvertGroup(to = Groups.estado_id.class)
+
 	private EstadoDTO estado;
 	
 	public CidadeDTO() {

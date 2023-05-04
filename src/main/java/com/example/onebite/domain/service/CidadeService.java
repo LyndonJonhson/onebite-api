@@ -10,14 +10,14 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.onebite.api.dto.CidadeDTO;
+import com.example.onebite.api.assembler.CidadeAssembler;
+import com.example.onebite.api.dto.input.CidadeInputDTO;
 import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 import com.example.onebite.domain.model.Cidade;
 import com.example.onebite.domain.repository.CidadeRepository;
-import com.example.onebite.domain.repository.EstadoRepository;
 
 @Service
 public class CidadeService {
@@ -26,40 +26,37 @@ public class CidadeService {
 	private CidadeRepository repository;
 	
 	@Autowired
-	private EstadoRepository estadoRepository;
+	private CidadeAssembler cidadeAssembler;
 	
 	@Transactional(readOnly = true)
-	public List<CidadeDTO> findAll() {
+	public List<Cidade> findAll() {
 		List<Cidade> list = repository.findAll();
-		return list.stream().map(entity -> new CidadeDTO(entity)).toList();
+		return list;
 	}
 	
 	@Transactional(readOnly = true)
-	public CidadeDTO findById(Long id) {
+	public Cidade findById(Long id) {
 		Cidade entity = repository.findById(id)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), id)));
-		return new CidadeDTO(entity);
+		return entity;
 	}
 	
 	@Transactional
-	public CidadeDTO insert(CidadeDTO dto) {
+	public Cidade insert(CidadeInputDTO dto) {
 		try {
-			Cidade entity = new Cidade();
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new CidadeDTO(entity);
+			Cidade entity = cidadeAssembler.toEntity(dto);
+			return repository.save(entity);
 		} catch (DataIntegrityViolationException e) {
 			throw new MensagemNaoCompreensivelException(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem());
 		}	
 	}
 	
 	@Transactional
-	public CidadeDTO update(Long id, CidadeDTO dto) {
+	public Cidade update(Long id, CidadeInputDTO dto) {
 		try {
 			Cidade entity = repository.getReferenceById(id);
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new CidadeDTO(entity);
+			cidadeAssembler.copyToEntity(dto, entity);
+			return repository.save(entity);
 		} catch (EntityNotFoundException e) {
 			throw new EntidadeNaoEncontradaException(String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), id));
 		}
@@ -73,13 +70,6 @@ public class CidadeService {
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(String.format(Mensagem.ENTIDADE_EM_USO.getMensagem(), id));
 		}
-	}	
-	
-	private void copyDtoToEntity(CidadeDTO dto, Cidade entity) {
-		if (dto.getNome() != null)
-			entity.setNome(dto.getNome());
-		if (dto.getEstado() != null)
-			entity.setEstado(estadoRepository.getReferenceById(dto.getEstado().getId()));
 	}
 	
 }

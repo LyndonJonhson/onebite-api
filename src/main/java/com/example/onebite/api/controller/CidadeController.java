@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.onebite.api.assembler.CidadeDTOAssembler;
 import com.example.onebite.api.dto.CidadeDTO;
+import com.example.onebite.api.dto.input.CidadeInputDTO;
+import com.example.onebite.domain.model.Cidade;
 import com.example.onebite.domain.service.CidadeService;
 
 @RestController
@@ -24,36 +27,43 @@ import com.example.onebite.domain.service.CidadeService;
 public class CidadeController {
 	
 	@Autowired
-	private CidadeService service;
+	private CidadeService cidadeService;
+	
+	@Autowired
+	private CidadeDTOAssembler cidadeDTOAssembler;
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public List<CidadeDTO> findAll() {
-		return service.findAll();
+		List<Cidade> list = cidadeService.findAll();
+		return cidadeDTOAssembler.toCollectionDto(list);
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public CidadeDTO findById(@PathVariable Long id) {
-		return service.findById(id);	
+		Cidade entity = cidadeService.findById(id);
+		return cidadeDTOAssembler.toDto(entity);	
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public CidadeDTO insert(@Valid @RequestBody CidadeDTO dto) {
-		return service.insert(dto);
+	public CidadeDTO insert(@Valid @RequestBody CidadeInputDTO dto) {
+		Cidade entity = cidadeService.insert(dto);
+		return cidadeDTOAssembler.toDto(entity);
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public CidadeDTO update(@PathVariable Long id, @Valid @RequestBody CidadeDTO dto) {
-		return service.update(id, dto);
+	public CidadeDTO update(@PathVariable Long id, @Valid @RequestBody CidadeInputDTO dto) {
+		Cidade entity = cidadeService.update(id, dto);
+		return cidadeDTOAssembler.toDto(entity);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
-		service.delete(id);
+		cidadeService.delete(id);
 	}
 	
 }
