@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.onebite.api.dto.EstadoDTO;
+import com.example.onebite.api.assembler.EstadoDTOAssembler;
+import com.example.onebite.api.dto.EstadoRequestDTO;
+import com.example.onebite.api.dto.EstadoResponseDTO;
+import com.example.onebite.domain.model.Estado;
 import com.example.onebite.domain.service.EstadoService;
 
 @RestController
@@ -24,36 +27,43 @@ import com.example.onebite.domain.service.EstadoService;
 public class EstadoController {
 	
 	@Autowired
-	private EstadoService service;
+	private EstadoService estadoService;
+	
+	@Autowired
+	private EstadoDTOAssembler estadoDTOAssembler;
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<EstadoDTO> findAll() {
-		return service.findAll();
+	public List<EstadoResponseDTO> findAll() {
+		List<Estado> list = estadoService.findAll();
+		return estadoDTOAssembler.toCollectionDto(list);
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public EstadoDTO findById(@PathVariable Long id) {
-		return service.findById(id);
+	public EstadoResponseDTO findById(@PathVariable Long id) {
+		Estado entity = estadoService.findById(id);
+		return estadoDTOAssembler.toDto(entity);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public EstadoDTO insert(@Valid @RequestBody EstadoDTO dto) {
-		return service.insert(dto);
+	public EstadoResponseDTO insert(@Valid @RequestBody EstadoRequestDTO dto) {
+		Estado entity = estadoService.insert(dto);
+		return estadoDTOAssembler.toDto(entity);
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public EstadoDTO update(@PathVariable Long id, @Valid @RequestBody EstadoDTO dto) {
-		return service.update(id, dto);
+	public EstadoResponseDTO update(@PathVariable Long id, @Valid @RequestBody EstadoRequestDTO dto) {
+		Estado entity = estadoService.update(id, dto);
+		return estadoDTOAssembler.toDto(entity);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
-		service.delete(id);
+		estadoService.delete(id);
 	}
 	
 }

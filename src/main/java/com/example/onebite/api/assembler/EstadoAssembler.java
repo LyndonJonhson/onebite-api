@@ -4,22 +4,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.onebite.api.dto.CidadeRequestDTO;
-import com.example.onebite.domain.model.Cidade;
+import com.example.onebite.api.dto.EstadoRequestDTO;
 import com.example.onebite.domain.model.Estado;
 
 @Component
-public class CidadeAssembler {
+public class EstadoAssembler {
 	
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Cidade toEntity(CidadeRequestDTO dto) {
-		return modelMapper.map(dto, Cidade.class);
+	public Estado toEntity(EstadoRequestDTO dto) {
+		return modelMapper.map(dto, Estado.class);
 	}
 	
-	public void copyToEntity(CidadeRequestDTO dto, Cidade entity) {
-		entity.setEstado(new Estado());
+	public void copyToEntity(EstadoRequestDTO dto, Estado entity) {
 		modelMapper.map(dto, entity);
 	}
 	

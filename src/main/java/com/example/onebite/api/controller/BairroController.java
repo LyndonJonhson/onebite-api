@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.onebite.api.dto.BairroDTO;
+import com.example.onebite.api.assembler.BairroDTOAssembler;
+import com.example.onebite.api.dto.BairroRequestDTO;
+import com.example.onebite.api.dto.BairroResponseDTO;
+import com.example.onebite.domain.enums.Mensagem;
+import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
+import com.example.onebite.domain.model.Bairro;
 import com.example.onebite.domain.service.BairroService;
 
 @RestController
@@ -26,28 +32,39 @@ public class BairroController {
 	@Autowired
 	private BairroService service;
 	
+	@Autowired
+	private BairroDTOAssembler bairroDTOAssembler;
+	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<BairroDTO> findAll() {
-		return service.findAll();
+	public List<BairroResponseDTO> findAll() {
+		List<Bairro> list = service.findAll();
+		return bairroDTOAssembler.toCollectionDto(list);
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public BairroDTO findById(@PathVariable Long id) {
-		return service.findById(id);
+	public BairroResponseDTO findById(@PathVariable Long id) {
+		Bairro entity = service.findById(id);
+		return bairroDTOAssembler.toDto(entity);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public BairroDTO insert(@Valid @RequestBody BairroDTO dto) {
-		return service.insert(dto);
+	public BairroResponseDTO insert(@Valid @RequestBody BairroRequestDTO dto) {
+		Bairro entity = service.insert(dto);
+		return bairroDTOAssembler.toDto(entity);
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public BairroDTO update(@PathVariable Long id, @Valid @RequestBody BairroDTO dto) {
-		return service.update(id, dto);		
+	public BairroResponseDTO update(@PathVariable Long id, @Valid @RequestBody BairroRequestDTO dto) {
+		try {
+			Bairro entity = service.update(id, dto);
+			return bairroDTOAssembler.toDto(entity);
+		} catch (DataIntegrityViolationException e) {
+			throw new MensagemNaoCompreensivelException(String.format(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem(), dto.getCidade().getId()));
+		}	
 	}
 	
 	@DeleteMapping("/{id}")

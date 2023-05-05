@@ -27,12 +27,12 @@ public class EnderecoDTO implements Serializable {
 	@Valid	
 	@NotNull
 	@ConvertGroup(to = Groups.bairro_id.class)
-	private BairroDTO bairro;
+	private BairroResponseDTO bairro;
 
 	public EnderecoDTO() {
 	}
 
-	public EnderecoDTO(String cep, String logradouro, String numero, String complemento, BairroDTO bairro) {
+	public EnderecoDTO(String cep, String logradouro, String numero, String complemento, BairroResponseDTO bairro) {
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.numero = numero;
@@ -45,7 +45,7 @@ public class EnderecoDTO implements Serializable {
 		this.logradouro = entity.getLogradouro();
 		this.numero = entity.getNumero();
 		this.complemento = entity.getComplemento();
-		this.bairro = new BairroDTO(entity.getBairro());
+		this.bairro = new BairroResponseDTO(entity.getBairro());
 	}
 
 	public String getCep() {
@@ -80,11 +80,11 @@ public class EnderecoDTO implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public BairroDTO getBairro() {
+	public BairroResponseDTO getBairro() {
 		return bairro;
 	}
 
-	public void setBairro(BairroDTO bairro) {
+	public void setBairro(BairroResponseDTO bairro) {
 		this.bairro = bairro;
 	}
 	

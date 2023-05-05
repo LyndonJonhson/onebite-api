@@ -2,30 +2,30 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import com.example.onebite.domain.model.Cidade;
+import com.example.onebite.domain.model.Estado;
 
-public class CidadeDTO implements Serializable {
+public class EstadoResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-
+	
 	private String nome;
 
-	private EstadoDTO estado;
+	private String sigla;
 	
-	public CidadeDTO() {
+	public EstadoResponseDTO() {
 	}
 
-	public CidadeDTO(Long id, String nome, EstadoDTO estado) {
+	public EstadoResponseDTO(Long id, String nome, String sigla) {
 		this.id = id;
 		this.nome = nome;
-		this.estado = estado;
+		this.sigla = sigla;
 	}
 	
-	public CidadeDTO(Cidade entity) {
+	public EstadoResponseDTO(Estado entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
-		this.estado = new EstadoDTO(entity.getEstado());
+		this.sigla = entity.getSigla();
 	}
 
 	public Long getId() {
@@ -44,12 +44,12 @@ public class CidadeDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public EstadoDTO getEstado() {
-		return estado;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setEstado(EstadoDTO estado) {
-		this.estado = estado;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 	
 }

@@ -1,10 +1,10 @@
-package com.example.onebite.api.dto.input;
+package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-public class EstadoIdInputDTO implements Serializable {
+public class EstadoIdRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@NotNull

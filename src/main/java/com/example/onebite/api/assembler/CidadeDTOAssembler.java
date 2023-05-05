@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.onebite.api.dto.CidadeDTO;
+import com.example.onebite.api.dto.CidadeResponseDTO;
 import com.example.onebite.domain.model.Cidade;
 
 @Component
@@ -15,11 +15,11 @@ public class CidadeDTOAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public CidadeDTO toDto(Cidade entity) {
-		return modelMapper.map(entity, CidadeDTO.class);
+	public CidadeResponseDTO toDto(Cidade entity) {
+		return modelMapper.map(entity, CidadeResponseDTO.class);
 	}
 	
-	public List<CidadeDTO> toCollectionDto(List<Cidade> list) {
+	public List<CidadeResponseDTO> toCollectionDto(List<Cidade> list) {
 		return list.stream()
 				.map(cidade -> toDto(cidade))
 				.toList();
