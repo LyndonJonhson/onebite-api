@@ -9,16 +9,16 @@ import com.example.onebite.domain.model.Estado;
 
 @Component
 public class EstadoAssembler {
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	public Estado toEntity(EstadoRequestDTO dto) {
 		return modelMapper.map(dto, Estado.class);
 	}
-	
+
 	public void copyToEntity(EstadoRequestDTO dto, Estado entity) {
 		modelMapper.map(dto, entity);
 	}
-	
+
 }

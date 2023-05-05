@@ -25,45 +25,45 @@ import com.example.onebite.domain.service.EstadoService;
 @RestController
 @RequestMapping("/estados")
 public class EstadoController {
-	
+
 	@Autowired
 	private EstadoService estadoService;
-	
+
 	@Autowired
 	private EstadoDTOAssembler estadoDTOAssembler;
-	
+
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public List<EstadoResponseDTO> findAll() {
 		List<Estado> list = estadoService.findAll();
 		return estadoDTOAssembler.toCollectionDto(list);
 	}
-	
+
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public EstadoResponseDTO findById(@PathVariable Long id) {
 		Estado entity = estadoService.findById(id);
 		return estadoDTOAssembler.toDto(entity);
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EstadoResponseDTO insert(@Valid @RequestBody EstadoRequestDTO dto) {
 		Estado entity = estadoService.insert(dto);
 		return estadoDTOAssembler.toDto(entity);
 	}
-	
+
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public EstadoResponseDTO update(@PathVariable Long id, @Valid @RequestBody EstadoRequestDTO dto) {
 		Estado entity = estadoService.update(id, dto);
 		return estadoDTOAssembler.toDto(entity);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		estadoService.delete(id);
 	}
-	
+
 }

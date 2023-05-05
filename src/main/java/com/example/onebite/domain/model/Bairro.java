@@ -18,10 +18,10 @@ public class Bairro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String nome;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cidade_id", nullable = false)
 	private Cidade cidade;
@@ -75,5 +75,5 @@ public class Bairro implements Serializable {
 		Bairro other = (Bairro) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }

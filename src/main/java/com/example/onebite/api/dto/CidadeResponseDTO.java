@@ -6,13 +6,13 @@ import com.example.onebite.domain.model.Cidade;
 
 public class CidadeResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 
 	private String nome;
 
 	private EstadoResponseDTO estado;
-	
+
 	public CidadeResponseDTO() {
 	}
 
@@ -21,7 +21,7 @@ public class CidadeResponseDTO implements Serializable {
 		this.nome = nome;
 		this.estado = estado;
 	}
-	
+
 	public CidadeResponseDTO(Cidade entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
@@ -51,5 +51,5 @@ public class CidadeResponseDTO implements Serializable {
 	public void setEstado(EstadoResponseDTO estado) {
 		this.estado = estado;
 	}
-	
+
 }

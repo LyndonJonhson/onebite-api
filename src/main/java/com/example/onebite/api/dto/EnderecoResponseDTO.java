@@ -2,45 +2,34 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-
-import com.example.onebite.core.validation.Groups;
 import com.example.onebite.domain.model.Endereco;
 
-public class EnderecoDTO implements Serializable {
+public class EnderecoResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@NotBlank
 	private String cep;
-	
-	@NotBlank
+
 	private String logradouro;
-	
-	@NotBlank
+
 	private String numero;
-	
+
 	private String complemento;
-	
-	@Valid	
-	@NotNull
-	@ConvertGroup(to = Groups.bairro_id.class)
+
 	private BairroResponseDTO bairro;
 
-	public EnderecoDTO() {
+	public EnderecoResponseDTO() {
 	}
 
-	public EnderecoDTO(String cep, String logradouro, String numero, String complemento, BairroResponseDTO bairro) {
+	public EnderecoResponseDTO(String cep, String logradouro, String numero, String complemento,
+			BairroResponseDTO bairro) {
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.bairro = bairro;
 	}
-	
-	public EnderecoDTO(Endereco entity) {
+
+	public EnderecoResponseDTO(Endereco entity) {
 		this.cep = entity.getCep();
 		this.logradouro = entity.getLogradouro();
 		this.numero = entity.getNumero();
@@ -87,5 +76,5 @@ public class EnderecoDTO implements Serializable {
 	public void setBairro(BairroResponseDTO bairro) {
 		this.bairro = bairro;
 	}
-	
+
 }

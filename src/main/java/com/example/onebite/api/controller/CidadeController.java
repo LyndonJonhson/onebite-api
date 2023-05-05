@@ -28,34 +28,34 @@ import com.example.onebite.domain.service.CidadeService;
 @RestController
 @RequestMapping("/cidades")
 public class CidadeController {
-	
+
 	@Autowired
 	private CidadeService cidadeService;
-	
+
 	@Autowired
 	private CidadeDTOAssembler cidadeDTOAssembler;
-	
+
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public List<CidadeResponseDTO> findAll() {
 		List<Cidade> list = cidadeService.findAll();
 		return cidadeDTOAssembler.toCollectionDto(list);
 	}
-	
+
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public CidadeResponseDTO findById(@PathVariable Long id) {
 		Cidade entity = cidadeService.findById(id);
-		return cidadeDTOAssembler.toDto(entity);	
+		return cidadeDTOAssembler.toDto(entity);
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public CidadeResponseDTO insert(@Valid @RequestBody CidadeRequestDTO dto) {
 		Cidade entity = cidadeService.insert(dto);
 		return cidadeDTOAssembler.toDto(entity);
 	}
-	
+
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public CidadeResponseDTO update(@PathVariable Long id, @Valid @RequestBody CidadeRequestDTO dto) {
@@ -63,14 +63,15 @@ public class CidadeController {
 			Cidade entity = cidadeService.update(id, dto);
 			return cidadeDTOAssembler.toDto(entity);
 		} catch (DataIntegrityViolationException e) {
-			throw new MensagemNaoCompreensivelException(String.format(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem(), dto.getEstado().getId()));
+			throw new MensagemNaoCompreensivelException(
+					String.format(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem(), dto.getEstado().getId()));
 		}
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		cidadeService.delete(id);
 	}
-	
+
 }

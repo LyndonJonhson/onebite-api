@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 public class EstadoRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@NotBlank
 	private String nome;
 
@@ -28,5 +28,5 @@ public class EstadoRequestDTO implements Serializable {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
-	
+
 }

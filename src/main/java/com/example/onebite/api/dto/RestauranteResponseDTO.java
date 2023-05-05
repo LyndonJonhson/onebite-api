@@ -3,43 +3,32 @@ package com.example.onebite.api.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import com.example.onebite.core.validation.Groups;
 import com.example.onebite.domain.model.Restaurante;
 
-public class RestauranteDTO implements Serializable {
+public class RestauranteResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@NotNull(groups = Groups.restaurante_id.class)
-	private Long id;
-	
-	@NotBlank
-	private String nome;
-	
-	@NotBlank
-	private String telefone;
-	
-	private String descricao;
-	
-	@NotNull
-	private Boolean aberto;
-	
-	@NotNull
-	private Boolean ativo;
-	
-	private Date dataCadastro;
-	
-	@Valid
-	@NotNull
-	private EnderecoDTO endereco;
 
-	public RestauranteDTO() {
+	private Long id;
+
+	private String nome;
+
+	private String telefone;
+
+	private String descricao;
+
+	private Boolean aberto;
+
+	private Boolean ativo;
+
+	private Date dataCadastro;
+
+	private EnderecoResponseDTO endereco;
+
+	public RestauranteResponseDTO() {
 	}
 
-	public RestauranteDTO(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, EnderecoDTO endereco) {
+	public RestauranteResponseDTO(Long id, String nome, String telefone, String descricao, Boolean aberto,
+			Boolean ativo, EnderecoResponseDTO endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -48,8 +37,8 @@ public class RestauranteDTO implements Serializable {
 		this.ativo = ativo;
 		this.endereco = endereco;
 	}
-	
-	public RestauranteDTO(Restaurante entity) {
+
+	public RestauranteResponseDTO(Restaurante entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
 		this.telefone = entity.getTelefone();
@@ -57,7 +46,7 @@ public class RestauranteDTO implements Serializable {
 		this.dataCadastro = entity.getDataCadastro();
 		this.aberto = entity.getAberto();
 		this.ativo = entity.getAtivo();
-		this.endereco = new EnderecoDTO(entity.getEndereco());
+		this.endereco = new EnderecoResponseDTO(entity.getEndereco());
 	}
 
 	public Long getId() {
@@ -91,7 +80,7 @@ public class RestauranteDTO implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public Boolean getAberto() {
 		return aberto;
 	}
@@ -112,12 +101,12 @@ public class RestauranteDTO implements Serializable {
 		return dataCadastro;
 	}
 
-	public EnderecoDTO getEndereco() {
+	public EnderecoResponseDTO getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(EnderecoDTO endereco) {
+	public void setEndereco(EnderecoResponseDTO endereco) {
 		this.endereco = endereco;
 	}
-	
+
 }

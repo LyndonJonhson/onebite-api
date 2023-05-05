@@ -8,10 +8,10 @@ import javax.validation.constraints.NotNull;
 
 public class CidadeRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@NotBlank
 	private String nome;
-	
+
 	@Valid
 	@NotNull
 	private EstadoIdRequestDTO estado;
@@ -31,5 +31,5 @@ public class CidadeRequestDTO implements Serializable {
 	public void setEstado(EstadoIdRequestDTO estado) {
 		this.estado = estado;
 	}
-	
+
 }

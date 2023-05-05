@@ -10,17 +10,17 @@ import com.example.onebite.domain.model.Estado;
 
 @Component
 public class CidadeAssembler {
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	public Cidade toEntity(CidadeRequestDTO dto) {
 		return modelMapper.map(dto, Cidade.class);
 	}
-	
+
 	public void copyToEntity(CidadeRequestDTO dto, Cidade entity) {
 		entity.setEstado(new Estado());
 		modelMapper.map(dto, entity);
 	}
-	
+
 }

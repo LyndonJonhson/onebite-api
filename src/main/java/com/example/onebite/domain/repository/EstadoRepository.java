@@ -7,8 +7,9 @@ import com.example.onebite.domain.model.Estado;
 
 @Repository
 public interface EstadoRepository extends JpaRepository<Estado, Long> {
-	
+
 	Estado findByNome(String nome);
+
 	Estado findBySigla(String sigla);
-	
+
 }

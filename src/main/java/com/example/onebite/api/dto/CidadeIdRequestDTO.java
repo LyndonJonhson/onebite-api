@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class CidadeIdRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@NotNull
 	private Long id;
 
@@ -17,5 +17,5 @@ public class CidadeIdRequestDTO implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 }

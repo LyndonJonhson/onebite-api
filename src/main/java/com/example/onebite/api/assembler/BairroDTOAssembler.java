@@ -11,18 +11,16 @@ import com.example.onebite.domain.model.Bairro;
 
 @Component
 public class BairroDTOAssembler {
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	public BairroResponseDTO toDto(Bairro entity) {
 		return modelMapper.map(entity, BairroResponseDTO.class);
 	}
-	
+
 	public List<BairroResponseDTO> toCollectionDto(List<Bairro> list) {
-		return list.stream()
-				.map(bairro -> toDto(bairro))
-				.toList();
+		return list.stream().map(bairro -> toDto(bairro)).toList();
 	}
-	
+
 }

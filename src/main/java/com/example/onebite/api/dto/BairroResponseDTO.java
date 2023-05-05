@@ -12,7 +12,7 @@ public class BairroResponseDTO implements Serializable {
 	private String nome;
 
 	private CidadeResponseDTO cidade;
-	
+
 	public BairroResponseDTO() {
 	}
 
@@ -21,7 +21,7 @@ public class BairroResponseDTO implements Serializable {
 		this.nome = nome;
 		this.cidade = cidade;
 	}
-	
+
 	public BairroResponseDTO(Bairro entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
@@ -51,5 +51,5 @@ public class BairroResponseDTO implements Serializable {
 	public void setCidade(CidadeResponseDTO cidade) {
 		this.cidade = cidade;
 	}
-	
+
 }

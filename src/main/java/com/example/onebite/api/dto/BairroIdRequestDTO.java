@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-public class EstadoIdRequestDTO implements Serializable {
+public class BairroIdRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@NotNull

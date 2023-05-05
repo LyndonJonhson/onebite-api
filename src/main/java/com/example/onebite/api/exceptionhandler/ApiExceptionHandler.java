@@ -23,12 +23,13 @@ import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@ExceptionHandler(EntidadeNaoEncontradaException.class)
-	public ResponseEntity<StandardError> entidadeNaoEncontradaExceptionHandler(EntidadeNaoEncontradaException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> entidadeNaoEncontradaExceptionHandler(EntidadeNaoEncontradaException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
@@ -37,10 +38,11 @@ public class ApiExceptionHandler {
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
-	}	
-	
+	}
+
 	@ExceptionHandler(EntidadeEmUsoException.class)
-	public ResponseEntity<StandardError> entidadeEmUsoExceptionHandler(EntidadeEmUsoException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> entidadeEmUsoExceptionHandler(EntidadeEmUsoException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.CONFLICT;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
@@ -50,9 +52,10 @@ public class ApiExceptionHandler {
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
-	
+
 	@ExceptionHandler(MensagemNaoCompreensivelException.class)
-	public ResponseEntity<StandardError> MensagemNaoCompreensivelExceptionHandler(MensagemNaoCompreensivelException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> MensagemNaoCompreensivelExceptionHandler(MensagemNaoCompreensivelException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
@@ -62,9 +65,10 @@ public class ApiExceptionHandler {
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
-	
+
 	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public ResponseEntity<StandardError> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
@@ -74,9 +78,10 @@ public class ApiExceptionHandler {
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
-	
+
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-	public ResponseEntity<StandardError> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException e, HttpServletRequest request) {
+	public ResponseEntity<StandardError> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.UNSUPPORTED_MEDIA_TYPE;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
@@ -86,9 +91,10 @@ public class ApiExceptionHandler {
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<ValidationError> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request) {
+	public ResponseEntity<ValidationError> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
 		ValidationError err = new ValidationError();
 		err.setTimestamp(Instant.now());
@@ -96,13 +102,13 @@ public class ApiExceptionHandler {
 		err.setError("Erro de validação");
 		err.setMessage(Mensagem.ERRO_DE_VALIDACAO.getMensagem());
 		err.setPath(request.getRequestURI());
-		
+
 		for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
 			String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 			err.addError(fieldError.getField(), message);
 		}
-		
+
 		return ResponseEntity.status(status).body(err);
 	}
-	
+
 }
