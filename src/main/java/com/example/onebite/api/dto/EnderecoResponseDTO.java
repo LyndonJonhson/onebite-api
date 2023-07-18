@@ -2,8 +2,6 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import com.example.onebite.domain.model.Endereco;
-
 public class EnderecoResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -16,26 +14,6 @@ public class EnderecoResponseDTO implements Serializable {
 	private String complemento;
 
 	private BairroResponseDTO bairro;
-
-	public EnderecoResponseDTO() {
-	}
-
-	public EnderecoResponseDTO(String cep, String logradouro, String numero, String complemento,
-			BairroResponseDTO bairro) {
-		this.cep = cep;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-	}
-
-	public EnderecoResponseDTO(Endereco entity) {
-		this.cep = entity.getCep();
-		this.logradouro = entity.getLogradouro();
-		this.numero = entity.getNumero();
-		this.complemento = entity.getComplemento();
-		this.bairro = new BairroResponseDTO(entity.getBairro());
-	}
 
 	public String getCep() {
 		return cep;

@@ -2,8 +2,6 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import com.example.onebite.domain.model.Estado;
-
 public class EstadoResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -12,21 +10,6 @@ public class EstadoResponseDTO implements Serializable {
 	private String nome;
 
 	private String sigla;
-
-	public EstadoResponseDTO() {
-	}
-
-	public EstadoResponseDTO(Long id, String nome, String sigla) {
-		this.id = id;
-		this.nome = nome;
-		this.sigla = sigla;
-	}
-
-	public EstadoResponseDTO(Estado entity) {
-		this.id = entity.getId();
-		this.nome = entity.getNome();
-		this.sigla = entity.getSigla();
-	}
 
 	public Long getId() {
 		return id;

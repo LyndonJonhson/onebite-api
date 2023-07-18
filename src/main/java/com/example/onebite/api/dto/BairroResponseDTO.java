@@ -2,8 +2,6 @@ package com.example.onebite.api.dto;
 
 import java.io.Serializable;
 
-import com.example.onebite.domain.model.Bairro;
-
 public class BairroResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -12,21 +10,6 @@ public class BairroResponseDTO implements Serializable {
 	private String nome;
 
 	private CidadeResponseDTO cidade;
-
-	public BairroResponseDTO() {
-	}
-
-	public BairroResponseDTO(Long id, String nome, CidadeResponseDTO cidade) {
-		this.id = id;
-		this.nome = nome;
-		this.cidade = cidade;
-	}
-
-	public BairroResponseDTO(Bairro entity) {
-		this.id = entity.getId();
-		this.nome = entity.getNome();
-		this.cidade = new CidadeResponseDTO(entity.getCidade());
-	}
 
 	public Long getId() {
 		return id;
