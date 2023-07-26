@@ -1,14 +1,16 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.response;
 
 import java.io.Serializable;
 
-public class CozinhaResponseDTO implements Serializable {
+public class BairroResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
-	
+
 	private String nome;
-	
+
+	private CidadeResponseDTO cidade;
+
 	public Long getId() {
 		return id;
 	}
@@ -24,5 +26,13 @@ public class CozinhaResponseDTO implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+	public CidadeResponseDTO getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(CidadeResponseDTO cidade) {
+		this.cidade = cidade;
+	}
+
 }

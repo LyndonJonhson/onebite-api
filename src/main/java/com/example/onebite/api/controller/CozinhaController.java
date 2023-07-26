@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.assembler.CozinhaDTOAssembler;
-import com.example.onebite.api.dto.CozinhaRequestDTO;
-import com.example.onebite.api.dto.CozinhaResponseDTO;
+import com.example.onebite.api.dto.request.CozinhaRequestDTO;
+import com.example.onebite.api.dto.response.CozinhaResponseDTO;
 import com.example.onebite.domain.model.Cozinha;
 import com.example.onebite.domain.service.CozinhaService;
 

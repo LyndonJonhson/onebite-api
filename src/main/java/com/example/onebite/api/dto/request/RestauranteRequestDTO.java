@@ -1,4 +1,4 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.request;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.example.onebite.api.dto.request.id.CozinhaIdRequestDTO;
 
 public class RestauranteRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

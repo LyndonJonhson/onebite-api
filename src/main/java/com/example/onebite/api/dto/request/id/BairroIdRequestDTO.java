@@ -1,4 +1,4 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.request.id;
 
 import java.io.Serializable;
 

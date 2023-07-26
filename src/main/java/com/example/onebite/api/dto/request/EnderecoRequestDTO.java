@@ -1,10 +1,12 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.request;
 
 import java.io.Serializable;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.example.onebite.api.dto.request.id.BairroIdRequestDTO;
 
 public class EnderecoRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

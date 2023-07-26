@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.assembler.EstadoDTOAssembler;
-import com.example.onebite.api.dto.EstadoRequestDTO;
-import com.example.onebite.api.dto.EstadoResponseDTO;
+import com.example.onebite.api.dto.request.EstadoRequestDTO;
+import com.example.onebite.api.dto.response.EstadoResponseDTO;
 import com.example.onebite.domain.model.Estado;
 import com.example.onebite.domain.service.EstadoService;
 

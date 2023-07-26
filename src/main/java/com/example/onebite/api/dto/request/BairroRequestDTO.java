@@ -1,4 +1,4 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.request;
 
 import java.io.Serializable;
 
@@ -6,7 +6,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class CidadeRequestDTO implements Serializable {
+import com.example.onebite.api.dto.request.id.CidadeIdRequestDTO;
+
+public class BairroRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@NotBlank
@@ -14,7 +16,7 @@ public class CidadeRequestDTO implements Serializable {
 
 	@Valid
 	@NotNull
-	private EstadoIdRequestDTO estado;
+	private CidadeIdRequestDTO cidade;
 
 	public String getNome() {
 		return nome;
@@ -24,12 +26,12 @@ public class CidadeRequestDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public EstadoIdRequestDTO getEstado() {
-		return estado;
+	public CidadeIdRequestDTO getCidade() {
+		return cidade;
 	}
 
-	public void setEstado(EstadoIdRequestDTO estado) {
-		this.estado = estado;
+	public void setCidade(CidadeIdRequestDTO cidade) {
+		this.cidade = cidade;
 	}
 
 }

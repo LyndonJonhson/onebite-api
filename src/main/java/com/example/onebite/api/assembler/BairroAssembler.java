@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.onebite.api.dto.BairroRequestDTO;
+import com.example.onebite.api.dto.request.BairroRequestDTO;
 import com.example.onebite.domain.model.Bairro;
 import com.example.onebite.domain.model.Cidade;
 

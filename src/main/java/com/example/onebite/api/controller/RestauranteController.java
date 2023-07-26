@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.assembler.RestauranteDTOAssembler;
-import com.example.onebite.api.dto.RestauranteRequestDTO;
-import com.example.onebite.api.dto.RestauranteResponseDTO;
+import com.example.onebite.api.dto.request.RestauranteRequestDTO;
+import com.example.onebite.api.dto.response.RestauranteResponseDTO;
 import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 import com.example.onebite.domain.model.Restaurante;

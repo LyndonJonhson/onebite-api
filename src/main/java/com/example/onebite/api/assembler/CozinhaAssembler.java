@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.onebite.api.dto.CozinhaRequestDTO;
+import com.example.onebite.api.dto.request.CozinhaRequestDTO;
 import com.example.onebite.domain.model.Cozinha;
 
 @Component

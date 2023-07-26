@@ -1,4 +1,4 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.response;
 
 import java.io.Serializable;
 import java.util.Date;

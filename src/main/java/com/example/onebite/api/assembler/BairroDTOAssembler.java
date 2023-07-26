@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.onebite.api.dto.BairroResponseDTO;
+import com.example.onebite.api.dto.response.BairroResponseDTO;
 import com.example.onebite.domain.model.Bairro;
 
 @Component

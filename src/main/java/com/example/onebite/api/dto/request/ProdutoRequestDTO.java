@@ -1,4 +1,4 @@
-package com.example.onebite.api.dto;
+package com.example.onebite.api.dto.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.assembler.BairroDTOAssembler;
-import com.example.onebite.api.dto.BairroRequestDTO;
-import com.example.onebite.api.dto.BairroResponseDTO;
+import com.example.onebite.api.dto.request.BairroRequestDTO;
+import com.example.onebite.api.dto.response.BairroResponseDTO;
 import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
 import com.example.onebite.domain.model.Bairro;

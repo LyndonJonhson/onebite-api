@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.assembler.ProdutoDTOAssembler;
-import com.example.onebite.api.dto.ProdutoRequestDTO;
-import com.example.onebite.api.dto.ProdutoResponseDTO;
+import com.example.onebite.api.dto.request.ProdutoRequestDTO;
+import com.example.onebite.api.dto.response.ProdutoResponseDTO;
 import com.example.onebite.domain.model.Produto;
 import com.example.onebite.domain.service.ProdutoService;
 

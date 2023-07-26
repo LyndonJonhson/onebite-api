@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.onebite.api.assembler.ProdutoAssembler;
-import com.example.onebite.api.dto.ProdutoRequestDTO;
+import com.example.onebite.api.dto.request.ProdutoRequestDTO;
 import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
