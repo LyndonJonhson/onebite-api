@@ -19,6 +19,8 @@ public class RestauranteResponseDTO implements Serializable {
 	private Boolean ativo;
 
 	private Date dataCadastro;
+	
+	private CozinhaResponseDTO cozinha;
 
 	private EnderecoResponseDTO endereco;
 
@@ -72,6 +74,14 @@ public class RestauranteResponseDTO implements Serializable {
 
 	public Date getDataCadastro() {
 		return dataCadastro;
+	}
+	
+	public CozinhaResponseDTO getCozinha() {
+		return cozinha;
+	}
+
+	public void setCozinha(CozinhaResponseDTO cozinha) {
+		this.cozinha = cozinha;
 	}
 
 	public EnderecoResponseDTO getEndereco() {

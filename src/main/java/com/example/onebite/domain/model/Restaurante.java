@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -39,19 +41,25 @@ public class Restaurante implements Serializable {
 	@Column(nullable = false, columnDefinition = "datetime")
 	private Date dataCadastro;
 	
+	@ManyToOne
+	@JoinColumn(name = "cozinha_id", nullable = false)
+	private Cozinha cozinha;
+	
 	@Embedded
 	private Endereco endereco;
 	
 	public Restaurante() {
 	}
 
-	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, Endereco endereco) {
+	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, 
+			Cozinha cozinha, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.descricao = descricao;
 		this.aberto = aberto;
 		this.ativo = ativo;
+		this.cozinha = cozinha;
 		this.endereco = endereco;
 	}
 
@@ -105,6 +113,14 @@ public class Restaurante implements Serializable {
 
 	public Date getDataCadastro() {
 		return dataCadastro;
+	}
+
+	public Cozinha getCozinha() {
+		return cozinha;
+	}
+
+	public void setCozinha(Cozinha cozinha) {
+		this.cozinha = cozinha;
 	}
 
 	public Endereco getEndereco() {

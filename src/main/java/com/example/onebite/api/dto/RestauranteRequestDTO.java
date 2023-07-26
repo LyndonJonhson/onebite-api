@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 public class RestauranteRequestDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-
 	@NotBlank
 	private String nome;
 
@@ -27,18 +25,14 @@ public class RestauranteRequestDTO implements Serializable {
 	private Boolean ativo;
 
 	private Date dataCadastro;
+	
+	@Valid
+	@NotNull
+	private CozinhaIdRequestDTO cozinha;
 
 	@Valid
 	@NotNull
 	private EnderecoRequestDTO endereco;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
