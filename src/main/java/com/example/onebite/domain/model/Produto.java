@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto implements Serializable {
@@ -28,16 +30,21 @@ public class Produto implements Serializable {
 	
 	@Column(nullable = false)
 	private Boolean ativo;
+	
+	@ManyToOne
+	@JoinColumn(name = "restaurante_id", nullable = false)
+	private Restaurante restaurante;
 
 	public Produto() {
 	}
 
-	public Produto(Long id, String nome, String descricao, BigDecimal preco, Boolean ativo) {
+	public Produto(Long id, String nome, String descricao, BigDecimal preco, Boolean ativo, Restaurante restaurante) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.ativo = ativo;
+		this.restaurante = restaurante;
 	}
 	
 	public Long getId() {
@@ -78,6 +85,14 @@ public class Produto implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
 	}
 
 	@Override

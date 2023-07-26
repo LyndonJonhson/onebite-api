@@ -15,6 +15,8 @@ public class ProdutoResponseDTO implements Serializable {
 	private BigDecimal preco;
 	
 	private Boolean ativo;
+	
+	private RestauranteResponseDTO restaurante;
 
 	public Long getId() {
 		return id;
@@ -54,6 +56,14 @@ public class ProdutoResponseDTO implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public RestauranteResponseDTO getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(RestauranteResponseDTO restaurante) {
+		this.restaurante = restaurante;
 	}
 	
 }
