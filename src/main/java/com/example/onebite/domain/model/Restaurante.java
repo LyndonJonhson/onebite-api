@@ -2,7 +2,9 @@ package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -45,6 +48,9 @@ public class Restaurante implements Serializable {
 	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 	
+	@OneToMany(mappedBy = "restaurante")
+	private Set<Pedido> pedidos = new HashSet<>();
+	
 	@Embedded
 	private Endereco endereco;
 	
@@ -52,7 +58,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, 
-			Cozinha cozinha, Endereco endereco) {
+			Cozinha cozinha, Set<Pedido> pedidos, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -60,6 +66,7 @@ public class Restaurante implements Serializable {
 		this.aberto = aberto;
 		this.ativo = ativo;
 		this.cozinha = cozinha;
+		this.pedidos = pedidos;
 		this.endereco = endereco;
 	}
 
@@ -121,6 +128,14 @@ public class Restaurante implements Serializable {
 
 	public void setCozinha(Cozinha cozinha) {
 		this.cozinha = cozinha;
+	}
+
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public Endereco getEndereco() {

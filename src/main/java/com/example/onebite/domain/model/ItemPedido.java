@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -35,18 +36,23 @@ public class ItemPedido implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "produto_id", nullable = false)
 	private Produto produto;
+	
+	@ManyToOne
+	@JoinColumn(name = "pedido_id")
+	private Pedido pedido;
 
 	public ItemPedido() {
 	}
 
 	public ItemPedido(Long id, Integer quantidade, BigDecimal precoUnitario, BigDecimal precoTotal, String observacao,
-			Produto produto) {
+			Produto produto, Pedido pedido) {
 		this.id = id;
 		this.quantidade = quantidade;
 		this.precoUnitario = precoUnitario;
 		this.precoTotal = precoTotal;
 		this.observacao = observacao;
 		this.produto = produto;
+		this.pedido = pedido;
 	}
 
 	public Long getId() {
@@ -95,6 +101,14 @@ public class ItemPedido implements Serializable {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	@Override

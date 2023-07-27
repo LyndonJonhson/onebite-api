@@ -2,13 +2,16 @@ package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -35,16 +38,20 @@ public class Usuario implements Serializable {
 	
 	@Column(nullable = false)
 	private Boolean ativo;
+	
+	@OneToMany(mappedBy = "cliente")
+	private Set<Pedido> pedidos = new HashSet<>();
 
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String email, String senha, Boolean ativo) {
+	public Usuario(Long id, String nome, String email, String senha, Boolean ativo, Set<Pedido> pedidos) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.ativo = ativo;
+		this.pedidos = pedidos;
 	}
 
 	public Long getId() {
@@ -89,6 +96,14 @@ public class Usuario implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
