@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.onebite.api.dto.request.UsuarioRequestDTO;
+import com.example.onebite.api.dto.request.UsuarioResumoRequestDTO;
 import com.example.onebite.domain.model.Usuario;
 
 @Component
@@ -18,6 +19,10 @@ public class UsuarioAssembler {
 	}
 
 	public void copyToEntity(UsuarioRequestDTO dto, Usuario entity) {
+		modelMapper.map(dto, entity);
+	}
+	
+	public void copyToEntity(UsuarioResumoRequestDTO dto, Usuario entity) {
 		modelMapper.map(dto, entity);
 	}
 

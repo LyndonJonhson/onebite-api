@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.onebite.api.assembler.UsuarioAssembler;
 import com.example.onebite.api.dto.request.UsuarioRequestDTO;
+import com.example.onebite.api.dto.request.UsuarioResumoRequestDTO;
 import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
@@ -50,7 +51,7 @@ public class UsuarioService {
 	}
 
 	@Transactional
-	public Usuario update(Long id, UsuarioRequestDTO dto) {
+	public Usuario update(Long id, UsuarioResumoRequestDTO dto) {
 		Usuario entity = usuarioRepository.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(
 				String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), id)));
 		usuarioAssembler.copyToEntity(dto, entity);

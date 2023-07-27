@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onebite.api.assembler.UsuarioDTOAssembler;
 import com.example.onebite.api.dto.request.UsuarioRequestDTO;
+import com.example.onebite.api.dto.request.UsuarioResumoRequestDTO;
 import com.example.onebite.api.dto.response.UsuarioResponseDTO;
 import com.example.onebite.domain.model.Usuario;
 import com.example.onebite.domain.service.UsuarioService;
@@ -55,7 +56,7 @@ public class UsuarioController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public UsuarioResponseDTO update(@PathVariable Long id, @Valid @RequestBody UsuarioRequestDTO dto) {
+	public UsuarioResponseDTO update(@PathVariable Long id, @Valid @RequestBody UsuarioResumoRequestDTO dto) {
 		Usuario entity = usuarioService.update(id, dto);
 		return usuarioDTOAssembler.toDto(entity);
 	}
