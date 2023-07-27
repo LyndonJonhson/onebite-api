@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Papel implements Serializable {
+public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -18,14 +18,15 @@ public class Papel implements Serializable {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String nome;
+	private Restaurante restaurante;
+	
+	@Column(nullable = false)
+	private Usuario usuario;
+	
+	@Column(nullable = false)
+	private Papel papel;
 
-	public Papel() {
-	}
-
-	public Papel(Long id, String nome) {
-		this.id = id;
-		this.nome = nome;
+	public Funcionario() {
 	}
 
 	public Long getId() {
@@ -36,12 +37,28 @@ public class Papel implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Restaurante getRestaurante() {
+		return restaurante;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Papel getPapel() {
+		return papel;
+	}
+
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
 
 	@Override
@@ -57,7 +74,7 @@ public class Papel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Papel other = (Papel) obj;
+		Funcionario other = (Funcionario) obj;
 		return Objects.equals(id, other.id);
 	}
 	
