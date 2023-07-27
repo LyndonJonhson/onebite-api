@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ItemPedido implements Serializable {
@@ -29,16 +31,22 @@ public class ItemPedido implements Serializable {
 	
 	@Column(length = 500)
 	private String observacao;
+	
+	@OneToOne
+	@JoinColumn(name = "produto_id", nullable = false)
+	private Produto produto;
 
 	public ItemPedido() {
 	}
 
-	public ItemPedido(Long id, Integer quantidade, BigDecimal precoUnitario, BigDecimal precoTotal, String observacao) {
+	public ItemPedido(Long id, Integer quantidade, BigDecimal precoUnitario, BigDecimal precoTotal, String observacao,
+			Produto produto) {
 		this.id = id;
 		this.quantidade = quantidade;
 		this.precoUnitario = precoUnitario;
 		this.precoTotal = precoTotal;
 		this.observacao = observacao;
+		this.produto = produto;
 	}
 
 	public Long getId() {
@@ -79,6 +87,14 @@ public class ItemPedido implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	@Override
