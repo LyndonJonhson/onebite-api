@@ -10,6 +10,12 @@ insert into bairro(nome, cidade_id) values ('Ipanema', 2);
 insert into cozinha(nome) values ('Hamburgueria');
 insert into cozinha(nome) values ('Pizzaria');
 
+insert into papel(nome) values ('ADMINISTRADOR DO SISTEMA');
+insert into papel(nome) values ('USUARIO');
+insert into papel(nome) values ('DONO DE RESTAURANTE');
+insert into papel(nome) values ('GERENTE');
+insert into papel(nome) values ('FUNCIONARIO');
+
 insert into usuario(nome, email, senha, data_cadastro, ativo) values ('Lyndon Jonhson', 'jonhson@gmail,com', 'jonhson123', Now(), true);
 insert into usuario(nome, email, senha, data_cadastro, ativo) values ('Willian Barbosa', 'willian@gmail,com', 'willian123', Now(), true);
 insert into usuario(nome, email, senha, data_cadastro, ativo) values ('Housemberg Donanvam', 'housemberg@gmail,com', 'housemberg123', Now(), true);
