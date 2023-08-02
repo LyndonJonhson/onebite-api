@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -68,6 +69,9 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "restaurante_id")
 	private Restaurante restaurante;
+	
+	@OneToOne
+	private FormaPagamento formaPagamento;
 	
 	@Embedded
 	private Endereco endereco;

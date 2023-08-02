@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -51,6 +53,12 @@ public class Restaurante implements Serializable {
 	@OneToMany(mappedBy = "restaurante")
 	private Set<Pedido> pedidos = new HashSet<>();
 	
+	@ManyToMany
+	@JoinTable(name = "restaurante_formas_pagamento", 
+			joinColumns = @JoinColumn(name = "restaurante_id"),
+			inverseJoinColumns = @JoinColumn(name = "formaPagamento_id"))
+	private Set<FormaPagamento> formasPagamento;
+	
 	@Embedded
 	private Endereco endereco;
 	
@@ -58,7 +66,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, 
-			Cozinha cozinha, Set<Pedido> pedidos, Endereco endereco) {
+			Cozinha cozinha, Set<Pedido> pedidos, Set<FormaPagamento> formasPagamento, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -67,6 +75,7 @@ public class Restaurante implements Serializable {
 		this.ativo = ativo;
 		this.cozinha = cozinha;
 		this.pedidos = pedidos;
+		this.formasPagamento = formasPagamento;
 		this.endereco = endereco;
 	}
 
@@ -136,6 +145,14 @@ public class Restaurante implements Serializable {
 
 	public void setPedidos(Set<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+	public Set<FormaPagamento> getFormasPagamento() {
+		return formasPagamento;
+	}
+
+	public void setFormasPagamento(Set<FormaPagamento> formasPagamento) {
+		this.formasPagamento = formasPagamento;
 	}
 
 	public Endereco getEndereco() {
