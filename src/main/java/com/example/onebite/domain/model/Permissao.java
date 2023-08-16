@@ -1,9 +1,7 @@
 package com.example.onebite.domain.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Papel implements Serializable {
+public class Permissao implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,15 +20,16 @@ public class Papel implements Serializable {
 	@Column(nullable = false)
 	private String nome;
 	
-	private Set<Permissao> permissoes = new HashSet<>();
+	@Column(nullable = false)
+	private String descricao;
 
-	public Papel() {
+	public Permissao() {
 	}
 
-	public Papel(Long id, String nome, Set<Permissao> permissoes) {
+	public Permissao(Long id, String nome, String descricao) {
 		this.id = id;
 		this.nome = nome;
-		this.permissoes = permissoes;
+		this.descricao = descricao;
 	}
 
 	public Long getId() {
@@ -49,12 +48,12 @@ public class Papel implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Permissao> getPermissoes() {
-		return permissoes;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setPermissoes(Set<Permissao> permissoes) {
-		this.permissoes = permissoes;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -70,7 +69,7 @@ public class Papel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Papel other = (Papel) obj;
+		Permissao other = (Permissao) obj;
 		return Objects.equals(id, other.id);
 	}
 	
