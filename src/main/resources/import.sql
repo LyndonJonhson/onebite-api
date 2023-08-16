@@ -16,6 +16,15 @@ insert into papel(nome) values ('DONO DE RESTAURANTE');
 insert into papel(nome) values ('GERENTE');
 insert into papel(nome) values ('FUNCIONARIO');
 
+insert into permissao(nome, descricao) values ('CONSULTAR_COZINHAS', 'Permite consultar cozinhas')
+insert into permissao(nome, descricao) values ('EDITAR_COZINHAS', 'Permite editar cozinhas')
+insert into permissao(nome, descricao) values ('CONSULTAR_RESTAURANTES', 'Permite consultar restaurantes')
+insert into permissao(nome, descricao) values ('EDITAR_RESTAURANTES', 'Permite etidar restaurantes')
+insert into permissao(nome, descricao) values ('CONSULTAR_FORMAS_PAGAMENTO', 'Permite consultar formas de pagamento')
+insert into permissao(nome, descricao) values ('EDITAR_FORMAS_PAGAMENTO', 'Permite editar formas de pagamento')
+insert into permissao(nome, descricao) values ('CONSULTAR_PEDIDOS', 'Permite consultar pedidos')
+insert into permissao(nome, descricao) values ('EDITAR_PEDIDOS', 'Permite editar pedidos')
+
 insert into usuario(nome, email, senha, data_cadastro, ativo) values ('Lyndon Jonhson', 'jonhson@gmail,com', 'jonhson123', Now(), true);
 insert into usuario(nome, email, senha, data_cadastro, ativo) values ('Willian Barbosa', 'willian@gmail,com', 'willian123', Now(), true);
 insert into usuario(nome, email, senha, data_cadastro, ativo) values ('Housemberg Donanvam', 'housemberg@gmail,com', 'housemberg123', Now(), true);
