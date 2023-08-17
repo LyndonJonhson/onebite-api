@@ -1,10 +1,10 @@
 package com.example.onebite.domain.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -53,16 +53,16 @@ public class Restaurante implements Serializable {
 	private Cozinha cozinha;
 	
 	@ManyToMany
-	private Set<Usuario> responsaveis = new HashSet<>();
+	private List<Usuario> responsaveis = new ArrayList<>();
 	
 	@ManyToMany
 	@JoinTable(name = "restaurante_formas_pagamento", 
 			joinColumns = @JoinColumn(name = "restaurante_id"),
 			inverseJoinColumns = @JoinColumn(name = "formaPagamento_id"))
-	private Set<FormaPagamento> formasPagamento;
+	private List<FormaPagamento> formasPagamento = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "restaurante")
-	private Set<Produto> produtos = new HashSet<>();
+	private List<Produto> produtos = new ArrayList<>();
 	
 	@Embedded
 	@AttributeOverrides({
@@ -77,7 +77,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, 
-			Cozinha cozinha, Set<Usuario> responsaveis, Set<FormaPagamento> formasPagamento, Set<Produto> produtos,
+			Cozinha cozinha, List<Usuario> responsaveis, List<FormaPagamento> formasPagamento, List<Produto> produtos,
 			Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
@@ -152,27 +152,27 @@ public class Restaurante implements Serializable {
 		this.cozinha = cozinha;
 	}
 
-	public Set<Usuario> getResponsaveis() {
+	public List<Usuario> getResponsaveis() {
 		return responsaveis;
 	}
 
-	public void setResponsaveis(Set<Usuario> responsaveis) {
+	public void setResponsaveis(List<Usuario> responsaveis) {
 		this.responsaveis = responsaveis;
 	}
 
-	public Set<FormaPagamento> getFormasPagamento() {
+	public List<FormaPagamento> getFormasPagamento() {
 		return formasPagamento;
 	}
 
-	public void setFormasPagamento(Set<FormaPagamento> formasPagamento) {
+	public void setFormasPagamento(List<FormaPagamento> formasPagamento) {
 		this.formasPagamento = formasPagamento;
 	}
 
-	public Set<Produto> getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(Set<Produto> produtos) {
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

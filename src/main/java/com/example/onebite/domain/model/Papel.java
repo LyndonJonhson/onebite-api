@@ -1,9 +1,9 @@
 package com.example.onebite.domain.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,12 +24,12 @@ public class Papel implements Serializable {
 	private String nome;
 	
 	@OneToMany
-	private Set<Permissao> permissoes = new HashSet<>();
+	private List<Permissao> permissoes = new ArrayList<>();
 
 	public Papel() {
 	}
 
-	public Papel(Long id, String nome, Set<Permissao> permissoes) {
+	public Papel(Long id, String nome, List<Permissao> permissoes) {
 		this.id = id;
 		this.nome = nome;
 		this.permissoes = permissoes;
@@ -51,11 +51,11 @@ public class Papel implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Permissao> getPermissoes() {
+	public List<Permissao> getPermissoes() {
 		return permissoes;
 	}
 
-	public void setPermissoes(Set<Permissao> permissoes) {
+	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
 	}
 

@@ -2,10 +2,10 @@ package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -61,7 +61,7 @@ public class Pedido implements Serializable {
 	private StatusPedido status;
 	
 	@OneToMany(mappedBy = "pedido")
-	private Set<ItemPedido> itens = new HashSet<>();
+	private List<ItemPedido> itens = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -88,7 +88,7 @@ public class Pedido implements Serializable {
 
 	public Pedido(Long id, String codigo, BigDecimal subTotal, BigDecimal taxaFrete, BigDecimal valorTotal,
 			Date dataCriacao, Date dataConfirmacao, Date dataEmPreparacao, Date dataEmEntrega, Date dataEntrega,
-			Date dataCancelamento, StatusPedido status, Set<ItemPedido> itens, Usuario cliente, Restaurante restaurante,
+			Date dataCancelamento, StatusPedido status, List<ItemPedido> itens, Usuario cliente, Restaurante restaurante,
 			FormaPagamento formaPagamento, Endereco enderecoEntrega) {
 		this.id = id;
 		this.codigo = codigo;
@@ -201,11 +201,11 @@ public class Pedido implements Serializable {
 		this.status = status;
 	}
 
-	public Set<ItemPedido> getItens() {
+	public List<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<ItemPedido> itens) {
+	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
 

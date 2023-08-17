@@ -1,10 +1,10 @@
 package com.example.onebite.domain.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,12 +37,12 @@ public class Usuario implements Serializable {
 	private Date dataCadastro;
 	
 	@ManyToMany
-	private Set<Papel> papeis = new HashSet<>();
+	private List<Papel> papeis = new ArrayList<>();
 
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String email, String senha, Set<Papel> papeis) {
+	public Usuario(Long id, String nome, String email, String senha, List<Papel> papeis) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -86,11 +86,11 @@ public class Usuario implements Serializable {
 		return dataCadastro;
 	}
 
-	public Set<Papel> getPapeis() {
+	public List<Papel> getPapeis() {
 		return papeis;
 	}
 
-	public void setPapeis(Set<Papel> papeis) {
+	public void setPapeis(List<Papel> papeis) {
 		this.papeis = papeis;
 	}
 

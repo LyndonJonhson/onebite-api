@@ -2,9 +2,9 @@ package com.example.onebite.api.dto.response;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import com.example.onebite.domain.enums.StatusPedido;
 
@@ -33,7 +33,7 @@ public class PedidoResponseDTO implements Serializable {
 	
 	private StatusPedido status;
 	
-	private Set<ItemPedidoResponseDTO> itens = new HashSet<>();
+	private List<ItemPedidoResponseDTO> itens = new ArrayList<>();
 	
 	private UsuarioResponseDTO cliente;
 	
@@ -131,11 +131,11 @@ public class PedidoResponseDTO implements Serializable {
 		this.status = status;
 	}
 
-	public Set<ItemPedidoResponseDTO> getItens() {
+	public List<ItemPedidoResponseDTO> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<ItemPedidoResponseDTO> itens) {
+	public void setItens(List<ItemPedidoResponseDTO> itens) {
 		this.itens = itens;
 	}
 

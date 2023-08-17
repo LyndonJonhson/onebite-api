@@ -2,9 +2,9 @@ package com.example.onebite.api.dto.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -39,8 +39,7 @@ public class PedidoRequestDTO implements Serializable {
 	@NotNull
 	private StatusPedido status;
 	
-	private Set<ItemPedidoIdRequestDTO> itens = new HashSet<>();
-	
+	private List<ItemPedidoIdRequestDTO> itens = new ArrayList<>();
 	@NotNull
 	private UsuarioIdRequestDTO cliente;
 	
@@ -134,11 +133,11 @@ public class PedidoRequestDTO implements Serializable {
 		this.status = status;
 	}
 
-	public Set<ItemPedidoIdRequestDTO> getItens() {
+	public List<ItemPedidoIdRequestDTO> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<ItemPedidoIdRequestDTO> itens) {
+	public void setItens(List<ItemPedidoIdRequestDTO> itens) {
 		this.itens = itens;
 	}
 

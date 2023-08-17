@@ -1,6 +1,6 @@
 package com.example.onebite.api.assembler;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class PedidoAssembler {
 	}
 
 	public void copyToEntity(PedidoRequestDTO dto, Pedido entity) {
-		entity.setItens(new HashSet<>());
+		entity.setItens(new ArrayList<>());
 		entity.setCliente(new Usuario());
 		entity.setRestaurante(new Restaurante());
 		entity.setFormaPagamento(new FormaPagamento());

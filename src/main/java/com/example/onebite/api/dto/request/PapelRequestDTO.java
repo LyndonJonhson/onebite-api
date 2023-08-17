@@ -1,7 +1,8 @@
 package com.example.onebite.api.dto.request;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +14,7 @@ public class PapelRequestDTO implements Serializable {
 	private String nome;
 	
 	@NotEmpty
-	private Set<PermissaoRequestDTO> permissoes;
+	private List<PermissaoRequestDTO> permissoes = new ArrayList<>();
 
 	public String getNome() {
 		return nome;
@@ -23,11 +24,11 @@ public class PapelRequestDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<PermissaoRequestDTO> getPermissoes() {
+	public List<PermissaoRequestDTO> getPermissoes() {
 		return permissoes;
 	}
 
-	public void setPermissoes(Set<PermissaoRequestDTO> permissoes) {
+	public void setPermissoes(List<PermissaoRequestDTO> permissoes) {
 		this.permissoes = permissoes;
 	}
 
