@@ -224,11 +224,19 @@ public class Pedido implements Serializable {
 		this.restaurante = restaurante;
 	}
 
-	public Endereco getEndereco() {
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
+
+	public Endereco getEnderecoEntrega() {
 		return enderecoEntrega;
 	}
 
-	public void setEndereco(Endereco enderecoEntrega) {
+	public void setEnderecoEntrega(Endereco enderecoEntrega) {
 		this.enderecoEntrega = enderecoEntrega;
 	}
 
