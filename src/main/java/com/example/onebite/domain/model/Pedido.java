@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -16,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -70,11 +71,17 @@ public class Pedido implements Serializable {
 	@JoinColumn(name = "restaurante_id")
 	private Restaurante restaurante;
 	
-	@OneToOne
+	@ManyToOne
 	private FormaPagamento formaPagamento;
 	
 	@Embedded
-	private Endereco endereco;
+	@AttributeOverrides({
+		@AttributeOverride(name = "cep", column = @Column(name = "endereco_cep")),
+		@AttributeOverride(name = "logradouro", column = @Column(name = "endereco_logradouro")),
+		@AttributeOverride(name = "numero", column = @Column(name = "endereco_numero")),
+		@AttributeOverride(name = "complemento", column = @Column(name = "endereco_complemento"))
+	})
+	private Endereco enderecoEntrega;
 
 	public Pedido() {
 	}
@@ -82,7 +89,7 @@ public class Pedido implements Serializable {
 	public Pedido(Long id, String codigo, BigDecimal subTotal, BigDecimal taxaFrete, BigDecimal valorTotal,
 			Date dataCriacao, Date dataConfirmacao, Date dataEmPreparacao, Date dataEmEntrega, Date dataEntrega,
 			Date dataCancelamento, StatusPedido status, Set<ItemPedido> itens, Usuario cliente, Restaurante restaurante,
-			Endereco endereco) {
+			Endereco enderecoEntrega) {
 		this.id = id;
 		this.codigo = codigo;
 		this.subTotal = subTotal;
@@ -98,7 +105,7 @@ public class Pedido implements Serializable {
 		this.itens = itens;
 		this.cliente = cliente;
 		this.restaurante = restaurante;
-		this.endereco = endereco;
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
 	public Long getId() {
@@ -218,11 +225,11 @@ public class Pedido implements Serializable {
 	}
 
 	public Endereco getEndereco() {
-		return endereco;
+		return enderecoEntrega;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEndereco(Endereco enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
 	@Override

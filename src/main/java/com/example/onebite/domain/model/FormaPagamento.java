@@ -2,13 +2,12 @@ package com.example.onebite.domain.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class FormaPagamento implements Serializable {
@@ -18,11 +17,8 @@ public class FormaPagamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	private String nome;
-	
-	@ManyToMany(mappedBy = "formasPagamento")
-	private Set<Restaurante> restaurantes;
 
 	public FormaPagamento() {
 	}

@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class ItemPedido implements Serializable {
@@ -33,7 +32,7 @@ public class ItemPedido implements Serializable {
 	@Column(length = 500)
 	private String observacao;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "produto_id", nullable = false)
 	private Produto produto;
 	

@@ -42,7 +42,6 @@ public class UsuarioService {
 	public Usuario insert(UsuarioRequestDTO dto) {
 		try {
 			Usuario entity = usuarioAssembler.toEntity(dto);
-			entity.setAtivo(true);
 			return usuarioRepository.save(entity);
 		} catch (DataIntegrityViolationException e) {
 			throw new MensagemNaoCompreensivelException(Mensagem.MENSAGEM_NAO_COMPREENSIVEL.getMensagem());

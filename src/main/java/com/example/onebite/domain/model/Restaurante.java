@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -50,8 +52,8 @@ public class Restaurante implements Serializable {
 	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 	
-	@OneToMany(mappedBy = "restaurante")
-	private Set<Pedido> pedidos = new HashSet<>();
+	@ManyToMany
+	private Set<Usuario> responsaveis = new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "restaurante_formas_pagamento", 
@@ -59,14 +61,23 @@ public class Restaurante implements Serializable {
 			inverseJoinColumns = @JoinColumn(name = "formaPagamento_id"))
 	private Set<FormaPagamento> formasPagamento;
 	
+	@OneToMany(mappedBy = "restaurante")
+	private Set<Produto> produtos = new HashSet<>();
+	
 	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "cep", column = @Column(name = "endereco_cep")),
+		@AttributeOverride(name = "logradouro", column = @Column(name = "endereco_logradouro")),
+		@AttributeOverride(name = "numero", column = @Column(name = "endereco_numero")),
+		@AttributeOverride(name = "complemento", column = @Column(name = "endereco_complemento"))
+	})
 	private Endereco endereco;
 	
 	public Restaurante() {
 	}
 
 	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, 
-			Cozinha cozinha, Set<Pedido> pedidos, Set<FormaPagamento> formasPagamento, Endereco endereco) {
+			Cozinha cozinha, Set<FormaPagamento> formasPagamento, Set<Produto> produtos, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -74,8 +85,8 @@ public class Restaurante implements Serializable {
 		this.aberto = aberto;
 		this.ativo = ativo;
 		this.cozinha = cozinha;
-		this.pedidos = pedidos;
 		this.formasPagamento = formasPagamento;
+		this.produtos = produtos;
 		this.endereco = endereco;
 	}
 
@@ -139,12 +150,12 @@ public class Restaurante implements Serializable {
 		this.cozinha = cozinha;
 	}
 
-	public Set<Pedido> getPedidos() {
-		return pedidos;
+	public Set<Usuario> getResponsaveis() {
+		return responsaveis;
 	}
 
-	public void setPedidos(Set<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setResponsaveis(Set<Usuario> responsaveis) {
+		this.responsaveis = responsaveis;
 	}
 
 	public Set<FormaPagamento> getFormasPagamento() {
@@ -153,6 +164,14 @@ public class Restaurante implements Serializable {
 
 	public void setFormasPagamento(Set<FormaPagamento> formasPagamento) {
 		this.formasPagamento = formasPagamento;
+	}
+
+	public Set<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Set<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	public Endereco getEndereco() {
