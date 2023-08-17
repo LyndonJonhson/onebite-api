@@ -77,7 +77,8 @@ public class Restaurante implements Serializable {
 	}
 
 	public Restaurante(Long id, String nome, String telefone, String descricao, Boolean aberto, Boolean ativo, 
-			Cozinha cozinha, Set<FormaPagamento> formasPagamento, Set<Produto> produtos, Endereco endereco) {
+			Cozinha cozinha, Set<Usuario> responsaveis, Set<FormaPagamento> formasPagamento, Set<Produto> produtos,
+			Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -85,6 +86,7 @@ public class Restaurante implements Serializable {
 		this.aberto = aberto;
 		this.ativo = ativo;
 		this.cozinha = cozinha;
+		this.responsaveis = responsaveis;
 		this.formasPagamento = formasPagamento;
 		this.produtos = produtos;
 		this.endereco = endereco;

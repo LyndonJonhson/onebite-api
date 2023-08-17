@@ -89,7 +89,7 @@ public class Pedido implements Serializable {
 	public Pedido(Long id, String codigo, BigDecimal subTotal, BigDecimal taxaFrete, BigDecimal valorTotal,
 			Date dataCriacao, Date dataConfirmacao, Date dataEmPreparacao, Date dataEmEntrega, Date dataEntrega,
 			Date dataCancelamento, StatusPedido status, Set<ItemPedido> itens, Usuario cliente, Restaurante restaurante,
-			Endereco enderecoEntrega) {
+			FormaPagamento formaPagamento, Endereco enderecoEntrega) {
 		this.id = id;
 		this.codigo = codigo;
 		this.subTotal = subTotal;
@@ -105,6 +105,7 @@ public class Pedido implements Serializable {
 		this.itens = itens;
 		this.cliente = cliente;
 		this.restaurante = restaurante;
+		this.formaPagamento = formaPagamento;
 		this.enderecoEntrega = enderecoEntrega;
 	}
 
