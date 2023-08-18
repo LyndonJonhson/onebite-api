@@ -1,6 +1,7 @@
 package com.example.onebite.api.assembler;
 
 import java.util.List;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class PapelDTOAssembler {
 	}
 
 	public List<PapelResponseDTO> toCollectionDto(List<Papel> list) {
+		return list.stream().map(papel -> toDto(papel)).toList();
+	}
+	
+	public List<PapelResponseDTO> toCollectionDto(Set<Papel> list) {
 		return list.stream().map(papel -> toDto(papel)).toList();
 	}
 

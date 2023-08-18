@@ -1,13 +1,14 @@
 package com.example.onebite.domain.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,13 +37,13 @@ public class Usuario implements Serializable {
 	@Column(nullable = false, columnDefinition = "datetime")
 	private Date dataCadastro;
 	
-	@ManyToMany
-	private List<Papel> papeis = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Papel> papeis = new HashSet<>();
 
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String email, String senha, List<Papel> papeis) {
+	public Usuario(Long id, String nome, String email, String senha, Set<Papel> papeis) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -86,12 +87,20 @@ public class Usuario implements Serializable {
 		return dataCadastro;
 	}
 
-	public List<Papel> getPapeis() {
+	public Set<Papel> getPapeis() {
 		return papeis;
 	}
 
-	public void setPapeis(List<Papel> papeis) {
+	public void setPapeis(Set<Papel> papeis) {
 		this.papeis = papeis;
+	}
+	
+	public void adicionarPapel(Papel papel) {
+		this.papeis.add(papel);
+	}
+	
+	public void removerPapel(Papel papel) {
+		this.papeis.remove(papel);
 	}
 
 	@Override

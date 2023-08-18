@@ -15,6 +15,7 @@ import com.example.onebite.domain.enums.Mensagem;
 import com.example.onebite.domain.exception.EntidadeEmUsoException;
 import com.example.onebite.domain.exception.EntidadeNaoEncontradaException;
 import com.example.onebite.domain.exception.MensagemNaoCompreensivelException;
+import com.example.onebite.domain.model.Papel;
 import com.example.onebite.domain.model.Usuario;
 import com.example.onebite.domain.repository.UsuarioRepository;
 
@@ -26,6 +27,9 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioAssembler usuarioAssembler;
+	
+	@Autowired
+	private PapelService papelService;
 
 	@Transactional(readOnly = true)
 	public List<Usuario> findAll() {
@@ -66,6 +70,26 @@ public class UsuarioService {
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(String.format(Mensagem.ENTIDADE_EM_USO.getMensagem(), id));
 		}
+	}
+	
+	@Transactional
+	public void associarPapel(Long usuarioId, Long papelId) {
+		Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new EntidadeNaoEncontradaException(
+				String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), usuarioId)));
+		
+		Papel papel = papelService.findById(papelId);
+		
+		usuario.adicionarPapel(papel);
+	}
+	
+	@Transactional
+	public void desassociarPapel(Long usuarioId, Long papelId) {
+		Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new EntidadeNaoEncontradaException(
+				String.format(Mensagem.ENTIDADE_NAO_ENCONTRADA.getMensagem(), usuarioId)));
+		
+		Papel papel = papelService.findById(papelId);
+		
+		usuario.removerPapel(papel);
 	}
 
 }
