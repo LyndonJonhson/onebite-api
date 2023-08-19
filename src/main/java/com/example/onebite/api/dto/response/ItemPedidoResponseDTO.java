@@ -17,6 +17,8 @@ public class ItemPedidoResponseDTO implements Serializable {
 	private String observacao;
 	
 	private ProdutoResponseDTO produto;
+	
+	private PedidoResponseDTO pedido;
 
 	public Long getId() {
 		return id;
@@ -64,6 +66,14 @@ public class ItemPedidoResponseDTO implements Serializable {
 
 	public void setProduto(ProdutoResponseDTO produto) {
 		this.produto = produto;
+	}
+
+	public PedidoResponseDTO getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(PedidoResponseDTO pedido) {
+		this.pedido = pedido;
 	}
 	
 }

@@ -22,6 +22,8 @@ public class ItemPedidoRequestDTO implements Serializable {
 	@Valid
 	@NotNull
 	private ProdutoIdRequestDTO produto;
+	
+	private PedidoRequestDTO pedido;
 
 	public Integer getQuantidade() {
 		return quantidade;
@@ -53,6 +55,14 @@ public class ItemPedidoRequestDTO implements Serializable {
 
 	public void setProduto(ProdutoIdRequestDTO produto) {
 		this.produto = produto;
+	}
+
+	public PedidoRequestDTO getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(PedidoRequestDTO pedido) {
+		this.pedido = pedido;
 	}
 	
 }

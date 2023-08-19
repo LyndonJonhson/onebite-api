@@ -2,6 +2,10 @@ package com.example.onebite.api.dto.response;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.example.onebite.domain.model.Papel;
 
 public class UsuarioResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,8 +18,8 @@ public class UsuarioResponseDTO implements Serializable {
 	
 	private Date dataCadastro;
 	
-	private Boolean ativo;
-
+	private Set<Papel> papeis = new HashSet<>();
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,12 +52,12 @@ public class UsuarioResponseDTO implements Serializable {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public Boolean getAtivo() {
-		return ativo;
+	public Set<Papel> getPapeis() {
+		return papeis;
 	}
 
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
+	public void setPapeis(Set<Papel> papeis) {
+		this.papeis = papeis;
 	}
 	
 }

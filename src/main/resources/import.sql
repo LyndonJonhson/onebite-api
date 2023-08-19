@@ -77,7 +77,7 @@ insert into papel(nome) values ('Atendente');
 insert into papel(nome) values ('Gerente');
 insert into papel(nome) values ('Dono de Restaurante');
 
-insert into usuario_papeis values (1,1), (2,2), (3,3), (4,4), (5,5), (6, 4), (6,3);
+insert into usuario_papeis values (1,5), (2,4), (3,3), (4,2), (5,1), (6, 2), (6,3);
 
 insert into permissao(nome, descricao) values ('CONFIRMAR_ENTREGA_PEDIDO_DELIVERY', 'Permite confirmar a entrega do pedido delivery');
 insert into permissao(nome, descricao) values ('VISUALIZAR_PEDIDOS_STATUS_EM_ENTREGA', 'Permite visualizar no dashboard apenas os pedidos para entregar');
