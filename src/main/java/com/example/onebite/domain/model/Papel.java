@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Papel implements Serializable {
@@ -23,7 +23,7 @@ public class Papel implements Serializable {
 	@Column(nullable = false)
 	private String nome;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Permissao> permissoes = new ArrayList<>();
 
 	public Papel() {
